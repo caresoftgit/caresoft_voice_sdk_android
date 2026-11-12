@@ -1,0 +1,30 @@
+plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
+android {
+    namespace 'vn.caresoft.voice.demo'; compileSdk 35
+    defaultConfig { applicationId 'vn.caresoft.voice.demo'; minSdk 26; targetSdk 35; versionCode 10000; versionName '1.0.0' }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    kotlinOptions { jvmTarget = '17' }
+    buildTypes { release { minifyEnabled false } }
+}
+dependencies {
+    implementation 'vn.caresoft:voice-android:1.0.0'
+    implementation 'vn.caresoft:voice-android-ui:1.0.0'
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}
+
+// Firebase client configuration is public app metadata, never a service-account key.
+// Supply your own registered Android Firebase client configuration locally.
+def firebaseConfig = file('google-services.json')
+if (firebaseConfig.exists()) {
+    def config = new groovy.json.JsonSlurper().parse(firebaseConfig)
+    def client = config.client.find { it.client_info.android_client_info.package_name == android.defaultConfig.applicationId }
+    if (client == null) throw new GradleException('Firebase client package must match demo applicationId')
+    android.defaultConfig {
+        resValue 'string', 'google_app_id', client.client_info.mobilesdk_app_id
+        resValue 'string', 'google_api_key', client.api_key[0].current_key
+        resValue 'string', 'gcm_defaultSenderId', config.project_info.project_number
+        resValue 'string', 'project_id', config.project_info.project_id
+    }
+}
