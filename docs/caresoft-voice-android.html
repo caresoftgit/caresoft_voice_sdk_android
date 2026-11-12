@@ -1,10 +1,13 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Caresoft Voice Android 1.0.1 — Tài liệu tích hợp</title><style>body{font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f6f8;color:#123047;margin:0}main{max-width:1080px;margin:30px auto;padding:48px;background:white;border-radius:18px}nav{padding:18px;background:#edf7f5;border-radius:12px}nav a{display:inline-block;margin:4px 14px 4px 0}h1,h2,h3{line-height:1.3;color:#087e75}h2{margin-top:44px;border-top:1px solid #dfe7eb;padding-top:22px}section+section{margin-top:72px;border-top:4px solid #087e75;padding-top:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #dfe7eb;padding:10px;text-align:left;overflow-wrap:anywhere}pre{background:#123047;color:white;padding:20px;border-radius:12px;overflow:auto}code{font-family:monospace}a{color:#087e75}img{max-width:360px;width:100%;height:auto}footer{margin-top:40px;font-size:13px;color:#647787}@media(max-width:700px){main{padding:22px;margin:0;border-radius:0}h1{font-size:28px}table{font-size:14px}td,th{padding:6px}}@media print{main{margin:0;padding:0;max-width:none}h2,section+section{break-before:page}pre{white-space:pre-wrap;background:#f3f6f8;color:#123047}tr{break-inside:avoid}}</style></head><body><main><nav aria-label="Tài liệu"><a href="#guide">Tích hợp</a><a href="#api">API Kotlin/Java</a><a href="#backend">Backend và Firebase</a><a href="#compatibility">Yêu cầu Android</a><a href="#security">Bảo vệ credential</a><a href="#testing">Nghiệm thu</a><a href="#troubleshooting">Xử lý lỗi</a><a href="#delivery">Gói cài đặt</a></nav><section id="guide"><h1 id="guide-tích-hợp-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</h1>
-<p><strong>1.0.1 · Android API 26+ · Kotlin/Java</strong></p>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Caresoft Voice Android 1.0.2 — Tài liệu tích hợp</title><style>body{font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f6f8;color:#123047;margin:0}main{max-width:1080px;margin:30px auto;padding:48px;background:white;border-radius:18px}nav{padding:18px;background:#edf7f5;border-radius:12px}nav a{display:inline-block;margin:4px 14px 4px 0}h1,h2,h3{line-height:1.3;color:#087e75}h2{margin-top:44px;border-top:1px solid #dfe7eb;padding-top:22px}section+section{margin-top:72px;border-top:4px solid #087e75;padding-top:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #dfe7eb;padding:10px;text-align:left;overflow-wrap:anywhere}pre{background:#123047;color:white;padding:20px;border-radius:12px;overflow:auto}code{font-family:monospace}a{color:#087e75}img{max-width:360px;width:100%;height:auto}footer{margin-top:40px;font-size:13px;color:#647787}@media(max-width:700px){main{padding:22px;margin:0;border-radius:0}h1{font-size:28px}table{font-size:14px}td,th{padding:6px}}@media print{main{margin:0;padding:0;max-width:none}h2,section+section{break-before:page}pre{white-space:pre-wrap;background:#f3f6f8;color:#123047}tr{break-inside:avoid}}</style></head><body><main><nav aria-label="Tài liệu"><a href="#guide">Tích hợp</a><a href="#api">API Kotlin/Java</a><a href="#backend">Backend và Firebase</a><a href="#compatibility">Yêu cầu Android</a><a href="#security">Bảo vệ credential</a><a href="#testing">Nghiệm thu</a><a href="#troubleshooting">Xử lý lỗi</a><a href="#delivery">Gói cài đặt</a></nav><section id="guide"><h1 id="guide-tích-hợp-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</h1>
+<p><strong>1.0.2 · Android API 26+ · Kotlin/Java</strong></p>
 <div class="toc">
 <ul>
 <li><a href="#guide-tích-hợp-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</a><ul>
 <li><a href="#guide-1-chuẩn-bị">1. Chuẩn bị</a></li>
-<li><a href="#guide-2-cài-sdk-vào-ứng-dụng">2. Cài SDK vào ứng dụng</a></li>
+<li><a href="#guide-2-cài-sdk-vào-ứng-dụng">2. Cài SDK vào ứng dụng</a><ul>
+<li><a href="#guide-nâng-từ-101-lên-102">Nâng từ 1.0.1 lên 1.0.2</a></li>
+</ul>
+</li>
 <li><a href="#guide-3-quyền-và-thành-phần-android">3. Quyền và thành phần Android</a></li>
 <li><a href="#guide-4-khởi-tạo-client-và-phiên">4. Khởi tạo client và phiên</a></li>
 <li><a href="#guide-5-nhân-viên-và-đầu-số-gọi-ra">5. Nhân viên và đầu số gọi ra</a></li>
@@ -38,11 +41,14 @@
 </code></pre>
 <p>Trong module app:</p>
 <pre><code class="language-groovy">dependencies {
-    implementation 'vn.caresoft:voice-android:1.0.1'
-    implementation 'vn.caresoft:voice-android-ui:1.0.1' // tùy chọn
+    implementation 'vn.caresoft:voice-android:1.0.2'
+    implementation 'vn.caresoft:voice-android-ui:1.0.2' // tùy chọn
 }
 </code></pre>
 <p>Giữ toàn bộ Maven repository cùng AAR/POM/Gradle metadata để Gradle lấy đủ dependency. Không dùng <code>flatDir</code> chỉ chép riêng AAR. Đặt <code>minSdk</code> của app từ 26 trở lên; dùng demo làm cấu hình build tham khảo.</p>
+<h3 id="guide-nâng-từ-101-lên-102">Nâng từ 1.0.1 lên 1.0.2</h3>
+<p>Tải bộ tích hợp 1.0.2, kiểm tra checksum rồi chạy lại <code>python3 scripts/setup-sdk.py</code>. Cập nhật <strong>cả hai</strong> dependency core/UI về <code>1.0.2</code>; khi chép sang app riêng, thay bộ Maven repository cũ bằng bộ mới cùng metadata. Không cần đổi public API hoặc thêm cấu hình chọn chế độ hoạt động.</p>
+<p>Giữ applicationId, cấu hình Firebase, domain/App ID và provider của ứng dụng. Demo/APK bàn giao không chứa cấu hình thử nghiệm riêng. Sau nâng cấp, chạy <a href="#testing">checklist tích hợp</a>, đặc biệt nghe hai chiều, chuyển thiết bị âm thanh, DTMF và nhận cuộc gọi từ nền.</p>
 <h2 id="guide-3-quyền-và-thành-phần-android">3. Quyền và thành phần Android</h2>
 <p>SDK merge ConnectionService, receiver và foreground service vào manifest host. Kiểm tra merged manifest và bảo đảm host có quyền phù hợp:</p>
 <table>
@@ -137,7 +143,7 @@ CaresoftVoicePush.receive(message.data)
 <p>SDK không tạo FirebaseMessagingService thứ hai. Không log data payload. Quan sát <code>ClientEvent.IncomingCall</code> và <code>ClientEvent.CallRestored</code>, giữ <code>VoiceCall</code> rồi hiển thị UI. Khi Activity mở lại từ thông báo, gọi <code>getActiveCall()</code> để lấy cuộc gọi hiện tại. UI riêng gọi <code>call.answer()</code> để nhận, <code>call.reject()</code> để từ chối; quyền micro cần cấp ở foreground trước khi nhận.</p>
 <p>Trên Android 14+, app ở nền có thể bị chặn quyền microphone/foreground service; cung cấp notification mở app. High-priority data push không bảo đảm quyền chạy mọi tác vụ nền. Force-stop vẫn cần người dùng mở lại app. Xem demo đầy đủ thay vì chỉ chép vài dòng nhận message.</p>
 <h2 id="guide-8-ui-cuộc-gọi">8. UI cuộc gọi</h2>
-<p>Thêm dependency <code>voice-android-ui:1.0.1</code> nếu dùng màn hình sẵn có. <code>VoiceCallView</code> là Android View; đặt trong Activity/Fragment hoặc <code>AndroidView</code> của Compose. Host chịu trách nhiệm điều hướng, quyền runtime và giữ <code>VoiceCall</code> lâu hơn vòng đời màn hình.</p>
+<p>Thêm dependency <code>voice-android-ui:1.0.2</code> nếu dùng màn hình sẵn có. <code>VoiceCallView</code> là Android View; đặt trong Activity/Fragment hoặc <code>AndroidView</code> của Compose. Host chịu trách nhiệm điều hướng, quyền runtime và giữ <code>VoiceCall</code> lâu hơn vòng đời màn hình.</p>
 <pre><code class="language-kotlin">// Trong Activity/Fragment, sau khi host đã xử lý quyền micro.
 val callView = VoiceCallView(requireContext())
 container.addView(callView, ViewGroup.LayoutParams(
@@ -193,7 +199,7 @@ callView.unbind();
 <h2 id="guide-9-điều-khiển-cuộc-gọi">9. Điều khiển cuộc gọi</h2>
 <ul>
 <li><code>setMuted(true/false)</code>, <code>setHeld(true/false)</code>: state thay đổi sau xác nhận server; lỗi cần hiển thị, không tự giả thành công.</li>
-<li><code>sendDTMF("123#")</code>: dùng khi ACTIVE; không gửi chuỗi ngoài 0–9/A–D/*/#.</li>
+<li><code>sendDTMF("123#")</code>: dùng khi ACTIVE; không gửi chuỗi ngoài 0–9/A–D/*/#. Chờ thao tác hoàn tất trước chuỗi tiếp theo; nếu yêu cầu thất bại/hủy, hiển thị lỗi và cho phép thử lại khi cuộc gọi còn ACTIVE.</li>
 <li><code>getAudioRoutes()</code>: danh sách route hệ thống hỗ trợ, với id/name/selected. <code>setAudioRoute(id)</code> gửi yêu cầu; cập nhật lựa chọn từ <code>CallEvent.AudioRoutesChanged</code>.</li>
 <li>Không hardcode AudioRoute id, không xin thêm AudioManager focus hoặc gọi <code>setCommunicationDevice</code> để tranh quyền với SDK của cùng cuộc gọi.</li>
 <li><code>getStats()</code>: số liệu media có thể null khi chưa có mẫu. Byte count tăng không tự chứng minh người đối ứng nghe được âm thanh.</li>
@@ -226,7 +232,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 <p>Khi đổi domain/nhân viên, kết thúc cuộc gọi hiện tại rồi gọi <code>logout()</code>, <code>CaresoftVoicePush.clear(oldClient)</code> và <code>dispose()</code> client cũ; hủy subscription/job đăng ký push của tài khoản cũ trước khi tạo client mới. Không dispose khi chỉ đóng Activity.</p>
 <p><code>logout()</code> trả <code>LogoutResult</code> với xác nhận riêng app session/voice session và việc xóa credential cục bộ. Không coi local clear là server đã thu hồi phiên. Xem <a href="#api">API</a> và <a href="#troubleshooting">xử lý lỗi</a>.</p>
 <h2 id="guide-11-nghiệm-thu-trước-phát-hành">11. Nghiệm thu trước phát hành</h2>
-<p>Chạy <a href="#testing">checklist</a> trên thiết bị/OS của sản phẩm, gồm gọi ra, nhận từ nền/khóa/cold-start, hai chiều, route, token rotation, logout, mạng yếu và giới hạn OEM. Kết quả trên một máy hoặc APK build thành công không thay thế nghiệm thu các ca đó.</p></section><section id="api"><h1 id="api-api-kotlin-java-101">API Kotlin / Java — 1.0.1</h1>
+<p>Chạy <a href="#testing">checklist</a> trên thiết bị/OS của sản phẩm, gồm gọi ra, nhận từ nền/khóa/cold-start, hai chiều, route, token rotation, logout, mạng yếu và giới hạn OEM. Kết quả trên một máy hoặc APK build thành công không thay thế nghiệm thu các ca đó.</p></section><section id="api"><h1 id="api-api-kotlin-java-102">API Kotlin / Java — 1.0.2</h1>
 <p>Public package: <code>vn.caresoft.voice</code>; UI tùy chọn: <code>vn.caresoft.voice.ui.VoiceCallView</code>. API mạng/điều khiển dùng Kotlin suspend và overload callback Java. Ví dụ đã compile nằm trong <a href="../consumer-java/src/main/java/vn/caresoft/voice/consumer/JavaConsumer.java">consumer Java</a> và <a href="../integration/examples/kotlin/SdkIntegrationExample.kt">recipe Kotlin</a>.</p>
 <h2 id="api-client">Client</h2>
 <table>
@@ -393,7 +399,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 </table>
 <p><code>CallOptions(to, callerId=null, ticketId=null)</code>. <code>CallSnapshot</code> có id, direction, remote, state, mediaState, muted, held, serverCallId, endReason, createdAt, connectedAt, endedAt. Các mốc thời gian trong <code>CallSnapshot</code> là Unix milliseconds; không dùng ordinal enum làm protocol value.</p>
 <p>CallState: NEW, DIALING, RINGING, CONNECTING, ACTIVE, ENDED. MediaState: NOT_STARTED, CONNECTING, CONNECTED, DISCONNECTED, FAILED. ENDED terminal; không tái sử dụng call đã kết thúc.</p>
-<p>EndReason: LOCAL_ENDED, REMOTE_ENDED, REJECTED, MISSED, ANSWERED_ELSEWHERE, CANCELED_ELSEWHERE, AUTH_FAILED, CONNECTION_FAILED, BUSY, DISPOSED. Dùng để hiển thị kết quả; không suy diễn nguyên nhân chi tiết chỉ từ BUSY hoặc CONNECTION_FAILED.</p>
+<p>EndReason: LOCAL_ENDED, REMOTE_ENDED, REJECTED, MISSED, ANSWERED_ELSEWHERE, CANCELED_ELSEWHERE, AUTH_FAILED, CONNECTION_FAILED, BUSY, DISPOSED. Dùng để hiển thị kết quả; không suy diễn nguyên nhân chi tiết chỉ từ BUSY hoặc CONNECTION_FAILED. Với ANSWERED_ELSEWHERE/CANCELED_ELSEWHERE, đóng UI nhận cuộc gọi và hiển thị kết quả phù hợp; không gọi reject/end thêm từ callback kết thúc.</p>
 <h2 id="api-events-và-ui">Events và UI</h2>
 <p>ClientEvent: SessionChanged, ConnectionChanged, AvailabilityChanged, CallDeviceChanged, IncomingCall, CallRestored, Error.</p>
 <p>CallEvent: Changed(snapshot), AudioRoutesChanged(routes), Error(error). <code>EventMeta</code> gồm clientId/callId/sequence/timestamp; bỏ event của client cũ sau khi đổi tài khoản.</p>
@@ -509,7 +515,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 <thead>
 <tr>
 <th>Thành phần</th>
-<th>Bản bàn giao 1.0.1</th>
+<th>Bản bàn giao 1.0.2</th>
 </tr>
 </thead>
 <tbody>
@@ -539,7 +545,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 </tr>
 </tbody>
 </table>
-<p>Một process dùng một client và một cuộc gọi tại một thời điểm. Bản 1.0.1 không cung cấp video, hội nghị, chuyển cuộc gọi hoặc API điều khiển ghi âm. Không tự di chuyển phiên đăng nhập từ SDK nền tảng khác.</p>
+<p>Một process dùng một client và một cuộc gọi tại một thời điểm. Bản 1.0.2 không cung cấp video, hội nghị, chuyển cuộc gọi hoặc API điều khiển ghi âm. Không tự di chuyển phiên đăng nhập từ SDK nền tảng khác.</p>
 <p>Host phải có micro, kết nối mạng và khả năng cuộc gọi của Android. Kiểm tra merged manifest và quyền trước khi gọi/nhận; không yêu cầu ứng dụng trở thành dialer mặc định.</p>
 <ul>
 <li>Android 12+: giới hạn mở UI và chạy foreground service từ nền; xin <code>BLUETOOTH_CONNECT</code> nếu dùng Bluetooth.</li>
@@ -557,11 +563,11 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 <li>Đổi domain/nhân viên: kết thúc cuộc gọi, logout, clear push bridge và dispose client cũ. Kiểm tra <code>LogoutResult</code>: xóa credential cục bộ không thay thế xác nhận thu hồi phiên phía server.</li>
 <li>Không tắt TLS validation, đưa credential vào query string hoặc chuyển tiếp token qua redirect sang host khác.</li>
 <li>APK demo dùng debug signing để thử. App phát hành cần applicationId, Firebase và signing riêng của khách hàng.</li>
-</ul></section><section id="testing"><h1 id="testing-checklist-tích-hợp-101">Checklist tích hợp 1.0.1</h1>
+</ul></section><section id="testing"><h1 id="testing-checklist-tích-hợp-102">Checklist tích hợp 1.0.2</h1>
 <h2 id="testing-build-và-cấu-hình">Build và cấu hình</h2>
 <ul>
 <li>Chạy <code>python3 scripts/setup-sdk.py</code> và <code>python3 scripts/check-delivery.py</code>; build demo/consumer Java bằng JDK 17.</li>
-<li>Dùng cả hai dependency phiên bản <code>1.0.1</code>; giữ Maven metadata khi chép sang app riêng.</li>
+<li>Dùng cả hai dependency phiên bản <code>1.0.2</code>; giữ Maven metadata khi chép sang app riêng.</li>
 <li>Cấu hình Firebase đúng applicationId và cấu hình gửi push phía backend; không đưa khóa ký hoặc service-account vào app.</li>
 <li>Kiểm tra merged manifest, signing, ABI/page-size và yêu cầu phát hành của APK/AAB cuối.</li>
 </ul>
@@ -580,6 +586,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 <li>Mute/unmute, hold/unhold, DTMF, loa trong/loa ngoài/tai nghe/Bluetooth; xác nhận tiếng thực tế.</li>
 <li><code>VoiceCallView</code>: incoming, active, bàn phím DTMF, nhãn đầu số, thời lượng và thông tin kết thúc.</li>
 <li>Xoay màn hình, ẩn/quay lại UI và đổi UI không tạo/start lại call; <code>unbind()</code> không kết thúc cuộc gọi.</li>
+<li>Cuộc gọi đã nhận/kết thúc từ thiết bị khác: UI đóng đúng, không gửi thêm lệnh từ chối; cuộc gọi tiếp theo vẫn nhận được.</li>
 <li>Giữ kết quả <code>ENDED</code> đến khi người dùng đóng; cuộc gọi tiếp theo tạo object mới.</li>
 <li>Wi-Fi/mobile data, VPN/firewall của sản phẩm, mạng yếu/đổi mạng và cuộc gọi dài.</li>
 </ul>
@@ -603,7 +610,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 <tbody>
 <tr>
 <td>Không tìm thấy <code>vn.caresoft</code> artifact</td>
-<td>Chạy setup, trỏ đúng <code>packages/maven</code>, giữ metadata và version <code>1.0.1</code></td>
+<td>Chạy setup, trỏ đúng <code>packages/maven</code>, giữ metadata và version <code>1.0.2</code></td>
 </tr>
 <tr>
 <td><code>CLIENT_ALREADY_EXISTS</code></td>
@@ -671,7 +678,7 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 </tr>
 </tbody>
 </table>
-<p>Khi gửi hỗ trợ, cung cấp phiên bản SDK/app, model/Android, foreground/background, thời điểm, <code>CallState</code>/<code>MediaState</code> và <code>VoiceError.code</code>/<code>operation</code>. Chỉ gửi ID đối chiếu cuộc gọi qua kênh được phép. Không gửi token, khóa riêng, raw payload hoặc dữ liệu khách hàng trong log công khai.</p></section><section id="delivery"><h1 id="delivery-nội-dung-gói-cài-đặt-101">Nội dung gói cài đặt 1.0.1</h1>
+<p>Khi gửi hỗ trợ, cung cấp phiên bản SDK/app, model/Android, foreground/background, thời điểm, <code>CallState</code>/<code>MediaState</code> và <code>VoiceError.code</code>/<code>operation</code>. Chỉ gửi ID đối chiếu cuộc gọi qua kênh được phép. Không gửi token, khóa riêng, raw payload hoặc dữ liệu khách hàng trong log công khai.</p></section><section id="delivery"><h1 id="delivery-nội-dung-gói-cài-đặt-102">Nội dung gói cài đặt 1.0.2</h1>
 <table>
 <thead>
 <tr>
@@ -681,15 +688,15 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 </thead>
 <tbody>
 <tr>
-<td><code>packages/CaresoftVoice-Android-1.0.1-binary.zip</code></td>
+<td><code>packages/CaresoftVoice-Android-1.0.2-binary.zip</code></td>
 <td>Maven repository chứa SDK core/UI và metadata</td>
 </tr>
 <tr>
-<td><code>packages/caresoft-voice-demo-1.0.1-debug.apk</code></td>
+<td><code>packages/caresoft-voice-demo-1.0.2-debug.apk</code></td>
 <td>APK demo thử tích hợp, debug signing</td>
 </tr>
 <tr>
-<td><code>packages/CaresoftVoice-Android-1.0.1-integration.zip</code></td>
+<td><code>packages/CaresoftVoice-Android-1.0.2-integration.zip</code></td>
 <td>ZIP bộ tích hợp: demo, binary, tài liệu, examples và wrapper</td>
 </tr>
 <tr>
@@ -717,4 +724,4 @@ client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
 <p>Giữ toàn bộ Maven repository cùng POM/Gradle metadata. Lần resolve đầu cần truy cập Google Maven/Maven Central để tải dependency; gói cài đặt không phải mirror offline toàn bộ các repository này.</p>
 <p>Gói không chứa source SDK/UI, source JAR, cấu hình môi trường thực, <code>google-services.json</code>, khóa riêng hoặc keystore phát hành. APK demo chỉ để thử; phát hành ứng dụng của bạn bằng signing riêng.</p>
 <p>Khi nâng phiên bản: tải bản tương ứng, kiểm tra checksum, chạy lại setup, cập nhật dependency rồi build và nghiệm thu app. Không đặt code tùy chỉnh trong <code>packages/maven</code> vì đây là thư mục sinh lại. Không thêm AAR bằng <code>flatDir</code> làm mất thông tin dependency.</p>
-<p><code>release.json</code> ghi checksum binary/APK. <code>SHA256SUMS</code> ngoài cùng còn ghi checksum integration ZIP. Integration ZIP không chứa chính nó hoặc <code>SHA256SUMS</code> ngoài cùng; sau giải nén, setup kiểm tra binary bằng <code>release.json</code> như khi clone repo.</p></section><footer>Caresoft Voice Android · 1.0.1</footer></main></body></html>
+<p><code>release.json</code> ghi checksum binary/APK. <code>SHA256SUMS</code> ngoài cùng còn ghi checksum integration ZIP. Integration ZIP không chứa chính nó hoặc <code>SHA256SUMS</code> ngoài cùng; sau giải nén, setup kiểm tra binary bằng <code>release.json</code> như khi clone repo.</p></section><footer>Caresoft Voice Android · 1.0.2</footer></main></body></html>

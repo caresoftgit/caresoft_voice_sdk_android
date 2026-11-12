@@ -17,7 +17,7 @@ def inspect_bytes(name, data, forbidden_values=(), depth=0):
             or path.suffix in {'.p8', '.p12', '.jks', '.keystore', '.pem'}
             or '.local.' in path.name or '-sources' in path.name):
         raise ValueError('Private/source artifact in customer delivery: ' + name)
-    if path.suffix in {'.kt', '.java', '.swift', '.cpp', '.h', '.m'}:
+    if path.suffix in {'.kt', '.java', '.swift', '.c', '.cpp', '.h', '.m'}:
         # Only host demo/consumer examples are delivered as editable source.
         logical = re.split(r'\.(?:zip|apk|aar|jar)/', name)[-1]
         if not logical.startswith(('demo/src/', 'consumer-java/src/', 'integration/examples/')):

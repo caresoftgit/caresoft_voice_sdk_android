@@ -1,6 +1,6 @@
 # Yêu cầu và khả năng tương thích
 
-| Thành phần | Bản bàn giao 1.0.1 |
+| Thành phần | Bản bàn giao 1.0.2 |
 |---|---|
 | Android tối thiểu | Android 8.0 / API 26 |
 | Demo compile/target SDK | 35 |
@@ -9,7 +9,7 @@
 | UI tùy chọn | Android Views; không bắt buộc Compose/AppCompat |
 | Java | API callback; có module `consumer-java` |
 
-Một process dùng một client và một cuộc gọi tại một thời điểm. Bản 1.0.1 không cung cấp video, hội nghị, chuyển cuộc gọi hoặc API điều khiển ghi âm. Không tự di chuyển phiên đăng nhập từ SDK nền tảng khác.
+Một process dùng một client và một cuộc gọi tại một thời điểm. Bản 1.0.2 không cung cấp video, hội nghị, chuyển cuộc gọi hoặc API điều khiển ghi âm. Không tự di chuyển phiên đăng nhập từ SDK nền tảng khác.
 
 Host phải có micro, kết nối mạng và khả năng cuộc gọi của Android. Kiểm tra merged manifest và quyền trước khi gọi/nhận; không yêu cầu ứng dụng trở thành dialer mặc định.
 

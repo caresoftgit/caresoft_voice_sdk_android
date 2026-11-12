@@ -2,7 +2,7 @@
 
 Tích hợp nghe/gọi vào ứng dụng Android bằng Kotlin hoặc Java: đăng nhập nhân viên, gọi đi, nhận cuộc gọi, thông báo và giao diện cuộc gọi tùy chọn.
 
-**Phiên bản 1.0.1 · Android 8.0/API 26 trở lên · JDK 17**
+**Phiên bản 1.0.2 · Android 8.0/API 26 trở lên · JDK 17**
 
 ## Bắt đầu
 
@@ -19,7 +19,7 @@ python3 scripts/setup-sdk.py
 4. Chạy module `demo`, nhập cấu hình ứng dụng và C2C token của bạn. Xem [hướng dẫn demo](demo/README.md).
 5. Tích hợp vào app riêng theo [hướng dẫn Kotlin/Java](docs/android-integration-guide.md).
 
-Script cài đặt kiểm tra SHA-256 trước khi giải nén Maven repository vào `packages/maven`. Demo dùng `vn.caresoft:voice-android:1.0.1` và `vn.caresoft:voice-android-ui:1.0.1`. Không cần mã nguồn SDK để build.
+Script cài đặt kiểm tra SHA-256 trước khi giải nén Maven repository vào `packages/maven`. Demo dùng `vn.caresoft:voice-android:1.0.2` và `vn.caresoft:voice-android-ui:1.0.2`. Không cần mã nguồn SDK để build.
 
 ## Tài liệu
 

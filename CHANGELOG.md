@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 — 2026-11-12
+
+- Cải thiện xử lý thiết lập/kết thúc cuộc gọi và thao tác DTMF khi yêu cầu bị hủy.
+- Cải thiện đồng bộ cuộc gọi đã nhận hoặc kết thúc từ thiết bị khác, kể cả UUID viết hoa và phiên mới dùng lại UUID cũ.
+- Giữ nguyên API Kotlin/Java và giao diện `VoiceCallView`; ứng dụng tích hợp không cần thêm cấu hình chọn chế độ hoạt động.
+- Cập nhật SDK core/UI, demo sạch, hướng dẫn nâng phiên bản và bộ tài liệu offline.
+
 ## 1.0.1 — 2026-11-12
 
 - Cập nhật khả năng kết nối và xử lý vòng đời cuộc gọi.

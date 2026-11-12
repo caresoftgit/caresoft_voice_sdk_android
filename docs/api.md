@@ -1,4 +1,4 @@
-# API Kotlin / Java — 1.0.1
+# API Kotlin / Java — 1.0.2
 
 Public package: `vn.caresoft.voice`; UI tùy chọn: `vn.caresoft.voice.ui.VoiceCallView`. API mạng/điều khiển dùng Kotlin suspend và overload callback Java. Ví dụ đã compile nằm trong [consumer Java](../consumer-java/src/main/java/vn/caresoft/voice/consumer/JavaConsumer.java) và [recipe Kotlin](../integration/examples/kotlin/SdkIntegrationExample.kt).
 
@@ -57,7 +57,7 @@ Năm tham số đầu bắt buộc. Các tùy chọn còn lại dùng mặc đ�
 
 CallState: NEW, DIALING, RINGING, CONNECTING, ACTIVE, ENDED. MediaState: NOT_STARTED, CONNECTING, CONNECTED, DISCONNECTED, FAILED. ENDED terminal; không tái sử dụng call đã kết thúc.
 
-EndReason: LOCAL_ENDED, REMOTE_ENDED, REJECTED, MISSED, ANSWERED_ELSEWHERE, CANCELED_ELSEWHERE, AUTH_FAILED, CONNECTION_FAILED, BUSY, DISPOSED. Dùng để hiển thị kết quả; không suy diễn nguyên nhân chi tiết chỉ từ BUSY hoặc CONNECTION_FAILED.
+EndReason: LOCAL_ENDED, REMOTE_ENDED, REJECTED, MISSED, ANSWERED_ELSEWHERE, CANCELED_ELSEWHERE, AUTH_FAILED, CONNECTION_FAILED, BUSY, DISPOSED. Dùng để hiển thị kết quả; không suy diễn nguyên nhân chi tiết chỉ từ BUSY hoặc CONNECTION_FAILED. Với ANSWERED_ELSEWHERE/CANCELED_ELSEWHERE, đóng UI nhận cuộc gọi và hiển thị kết quả phù hợp; không gọi reject/end thêm từ callback kết thúc.
 
 ## Events và UI
 

@@ -56,9 +56,9 @@ nav = '<nav aria-label="Tài liệu">' + ''.join(
 body = nav + ''.join(render_document(name, section) for name, section, _ in DOCUMENTS)
 output = ('<!doctype html><html lang="vi"><head><meta charset="utf-8">'
           '<meta name="viewport" content="width=device-width,initial-scale=1">'
-          '<title>Caresoft Voice Android 1.0.1 — Tài liệu tích hợp</title>'
+          '<title>Caresoft Voice Android 1.0.2 — Tài liệu tích hợp</title>'
           f'<style>{css}</style></head><body><main>{body}'
-          '<footer>Caresoft Voice Android · 1.0.1</footer></main></body></html>')
+          '<footer>Caresoft Voice Android · 1.0.2</footer></main></body></html>')
 ids = re.findall(r'\bid="([^"]+)"', output)
 assert len(ids) == len(set(ids)), 'Duplicate HTML anchor'
 for anchor in re.findall(r'href="#([^"]+)"', output):

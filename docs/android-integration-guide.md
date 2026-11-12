@@ -1,6 +1,6 @@
 # Tích hợp Caresoft Voice SDK Android
 
-**1.0.1 · Android API 26+ · Kotlin/Java**
+**1.0.2 · Android API 26+ · Kotlin/Java**
 
 [TOC]
 
@@ -37,12 +37,18 @@ Trong module app:
 
 ```groovy
 dependencies {
-    implementation 'vn.caresoft:voice-android:1.0.1'
-    implementation 'vn.caresoft:voice-android-ui:1.0.1' // tùy chọn
+    implementation 'vn.caresoft:voice-android:1.0.2'
+    implementation 'vn.caresoft:voice-android-ui:1.0.2' // tùy chọn
 }
 ```
 
 Giữ toàn bộ Maven repository cùng AAR/POM/Gradle metadata để Gradle lấy đủ dependency. Không dùng `flatDir` chỉ chép riêng AAR. Đặt `minSdk` của app từ 26 trở lên; dùng demo làm cấu hình build tham khảo.
+
+### Nâng từ 1.0.1 lên 1.0.2
+
+Tải bộ tích hợp 1.0.2, kiểm tra checksum rồi chạy lại `python3 scripts/setup-sdk.py`. Cập nhật **cả hai** dependency core/UI về `1.0.2`; khi chép sang app riêng, thay bộ Maven repository cũ bằng bộ mới cùng metadata. Không cần đổi public API hoặc thêm cấu hình chọn chế độ hoạt động.
+
+Giữ applicationId, cấu hình Firebase, domain/App ID và provider của ứng dụng. Demo/APK bàn giao không chứa cấu hình thử nghiệm riêng. Sau nâng cấp, chạy [checklist tích hợp](testing.md), đặc biệt nghe hai chiều, chuyển thiết bị âm thanh, DTMF và nhận cuộc gọi từ nền.
 
 ## 3. Quyền và thành phần Android
 
@@ -146,7 +152,7 @@ Trên Android 14+, app ở nền có thể bị chặn quyền microphone/foregr
 
 ## 8. UI cuộc gọi
 
-Thêm dependency `voice-android-ui:1.0.1` nếu dùng màn hình sẵn có. `VoiceCallView` là Android View; đặt trong Activity/Fragment hoặc `AndroidView` của Compose. Host chịu trách nhiệm điều hướng, quyền runtime và giữ `VoiceCall` lâu hơn vòng đời màn hình.
+Thêm dependency `voice-android-ui:1.0.2` nếu dùng màn hình sẵn có. `VoiceCallView` là Android View; đặt trong Activity/Fragment hoặc `AndroidView` của Compose. Host chịu trách nhiệm điều hướng, quyền runtime và giữ `VoiceCall` lâu hơn vòng đời màn hình.
 
 ```kotlin
 // Trong Activity/Fragment, sau khi host đã xử lý quyền micro.
@@ -191,7 +197,7 @@ Demo có **UI của SDK / UI tự dựng** dùng chung một `VoiceCall`. Xem [d
 ## 9. Điều khiển cuộc gọi
 
 - `setMuted(true/false)`, `setHeld(true/false)`: state thay đổi sau xác nhận server; lỗi cần hiển thị, không tự giả thành công.
-- `sendDTMF("123#")`: dùng khi ACTIVE; không gửi chuỗi ngoài 0–9/A–D/*/#.
+- `sendDTMF("123#")`: dùng khi ACTIVE; không gửi chuỗi ngoài 0–9/A–D/*/#. Chờ thao tác hoàn tất trước chuỗi tiếp theo; nếu yêu cầu thất bại/hủy, hiển thị lỗi và cho phép thử lại khi cuộc gọi còn ACTIVE.
 - `getAudioRoutes()`: danh sách route hệ thống hỗ trợ, với id/name/selected. `setAudioRoute(id)` gửi yêu cầu; cập nhật lựa chọn từ `CallEvent.AudioRoutesChanged`.
 - Không hardcode AudioRoute id, không xin thêm AudioManager focus hoặc gọi `setCommunicationDevice` để tranh quyền với SDK của cùng cuộc gọi.
 - `getStats()`: số liệu media có thể null khi chưa có mẫu. Byte count tăng không tự chứng minh người đối ứng nghe được âm thanh.

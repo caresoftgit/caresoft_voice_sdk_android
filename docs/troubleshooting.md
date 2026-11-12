@@ -2,7 +2,7 @@
 
 | Hiện tượng / mã | Kiểm tra |
 |---|---|
-| Không tìm thấy `vn.caresoft` artifact | Chạy setup, trỏ đúng `packages/maven`, giữ metadata và version `1.0.1` |
+| Không tìm thấy `vn.caresoft` artifact | Chạy setup, trỏ đúng `packages/maven`, giữ metadata và version `1.0.2` |
 | `CLIENT_ALREADY_EXISTS` | Dùng một client ở Application/service; dispose client cũ trước khi tạo lại |
 | `MAIN_THREAD_REQUIRED` | Tạo client và `createCall()` trên main thread |
 | `LOGIN_REQUIRED` / `AUTH_REQUIRED` | Provider trả C2C mới cho đúng nhân viên; kiểm tra phiên backend |

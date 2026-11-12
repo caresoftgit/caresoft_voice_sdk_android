@@ -1,14 +1,14 @@
 {
-  "version": "1.0.1",
-  "demoVersionCode": 10100,
+  "version": "1.0.2",
+  "demoVersionCode": 10202,
   "binary": {
-    "file": "CaresoftVoice-Android-1.0.1-binary.zip",
-    "bytes": 1820929,
-    "sha256": "4fb09b3c15cc451948f8e9e4332e85c65b7fcc2c0b5af2430f345c6121019a71"
+    "file": "CaresoftVoice-Android-1.0.2-binary.zip",
+    "bytes": 1360865,
+    "sha256": "b29de08dbdbebf302c7f17e3a889d5d0e79ed09702220ff80f0a97cdd2f84c62"
   },
   "demo": {
-    "file": "caresoft-voice-demo-1.0.1-debug.apk",
-    "bytes": 49178102,
-    "sha256": "6806fd2b6714953617e16e61dd5427d54af0a5f477a65741239e93782fdcd6bf"
+    "file": "caresoft-voice-demo-1.0.2-debug.apk",
+    "bytes": 48026274,
+    "sha256": "4551553ba9afe99e7f40c8ca7bf4c0fecb496a3a1398f02ff5506a2ff9156276"
   }
 }

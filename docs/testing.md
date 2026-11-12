@@ -1,9 +1,9 @@
-# Checklist tích hợp 1.0.1
+# Checklist tích hợp 1.0.2
 
 ## Build và cấu hình
 
 - Chạy `python3 scripts/setup-sdk.py` và `python3 scripts/check-delivery.py`; build demo/consumer Java bằng JDK 17.
-- Dùng cả hai dependency phiên bản `1.0.1`; giữ Maven metadata khi chép sang app riêng.
+- Dùng cả hai dependency phiên bản `1.0.2`; giữ Maven metadata khi chép sang app riêng.
 - Cấu hình Firebase đúng applicationId và cấu hình gửi push phía backend; không đưa khóa ký hoặc service-account vào app.
 - Kiểm tra merged manifest, signing, ABI/page-size và yêu cầu phát hành của APK/AAB cuối.
 
@@ -22,6 +22,7 @@
 - Mute/unmute, hold/unhold, DTMF, loa trong/loa ngoài/tai nghe/Bluetooth; xác nhận tiếng thực tế.
 - `VoiceCallView`: incoming, active, bàn phím DTMF, nhãn đầu số, thời lượng và thông tin kết thúc.
 - Xoay màn hình, ẩn/quay lại UI và đổi UI không tạo/start lại call; `unbind()` không kết thúc cuộc gọi.
+- Cuộc gọi đã nhận/kết thúc từ thiết bị khác: UI đóng đúng, không gửi thêm lệnh từ chối; cuộc gọi tiếp theo vẫn nhận được.
 - Giữ kết quả `ENDED` đến khi người dùng đóng; cuộc gọi tiếp theo tạo object mới.
 - Wi-Fi/mobile data, VPN/firewall của sản phẩm, mạng yếu/đổi mạng và cuộc gọi dài.
 

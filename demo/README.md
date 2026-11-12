@@ -1,6 +1,6 @@
-# Demo Caresoft Voice Android 1.0.1
+# Demo Caresoft Voice Android 1.0.2
 
-Demo Kotlin gồm đăng nhập, bàn phím, cài đặt và màn hình nghe/gọi. Yêu cầu Android 8.0/API 26+, JDK 17, Android SDK 35. Package mặc định `vn.caresoft.voice.demo`; versionCode `10100`.
+Demo Kotlin gồm đăng nhập, bàn phím, cài đặt và màn hình nghe/gọi. Yêu cầu Android 8.0/API 26+, JDK 17, Android SDK 35. Package mặc định `vn.caresoft.voice.demo`; versionCode `10202`.
 
 ## Build và chạy
 
@@ -20,6 +20,10 @@ Hoặc mở repo bằng Android Studio và chạy module `demo`. APK sẵn có t
 4. Tải/chọn **Số gọi ra**, nhập số rồi gọi. `callerId` dùng ID được trả về, không dùng nhãn hiển thị.
 5. Chọn **UI của SDK / UI tự dựng** để thử trên cùng một cuộc gọi. UI SDK hiển thị nhận/từ chối, trạng thái kết nối, thời lượng, mute, hold, thiết bị âm thanh, bàn phím DTMF và kết quả sau khi kết thúc. Điều khiển chỉ bật khi trạng thái cho phép.
 6. **Ẩn màn hình cuộc gọi** chỉ đóng UI; **Trở lại cuộc gọi** hiển thị lại cuộc gọi hiện tại. Xoay màn hình không tạo cuộc gọi mới. Cuộc gọi kết thúc giữ chi tiết tới khi đóng hoặc tạo cuộc gọi tiếp theo.
+
+## Nâng phiên bản
+
+Bộ này dùng core/UI `1.0.2`, versionCode `10202`. Khi cập nhật từ bản trước, chạy lại setup và build để tránh dùng binary cũ trong `packages/maven`. Demo không cần tùy chọn chế độ nội bộ; khách hàng chỉ nhập cấu hình được cấp cho ứng dụng của mình. Không sử dụng bản APK riêng đã cấu hình tài khoản làm bộ bàn giao.
 
 ## Firebase và nhận cuộc gọi
 

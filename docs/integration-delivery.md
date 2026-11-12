@@ -1,10 +1,10 @@
-# Nội dung gói cài đặt 1.0.1
+# Nội dung gói cài đặt 1.0.2
 
 | Đường dẫn | Nội dung |
 |---|---|
-| `packages/CaresoftVoice-Android-1.0.1-binary.zip` | Maven repository chứa SDK core/UI và metadata |
-| `packages/caresoft-voice-demo-1.0.1-debug.apk` | APK demo thử tích hợp, debug signing |
-| `packages/CaresoftVoice-Android-1.0.1-integration.zip` | ZIP bộ tích hợp: demo, binary, tài liệu, examples và wrapper |
+| `packages/CaresoftVoice-Android-1.0.2-binary.zip` | Maven repository chứa SDK core/UI và metadata |
+| `packages/caresoft-voice-demo-1.0.2-debug.apk` | APK demo thử tích hợp, debug signing |
+| `packages/CaresoftVoice-Android-1.0.2-integration.zip` | ZIP bộ tích hợp: demo, binary, tài liệu, examples và wrapper |
 | `packages/release.json`, `packages/SHA256SUMS` | Phiên bản, kích thước và SHA-256 |
 | `scripts/setup-sdk.py` | Kiểm tra checksum, giải nén binary vào `packages/maven` |
 | `demo/` | Demo Kotlin dùng binary SDK |

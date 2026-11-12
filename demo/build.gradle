@@ -8,8 +8,8 @@ android {
     buildTypes { release { minifyEnabled false } }
 }
 dependencies {
-    implementation 'vn.caresoft:voice-android:1.0.1'
-    implementation 'vn.caresoft:voice-android-ui:1.0.1'
+    implementation 'vn.caresoft:voice-android:1.0.2'
+    implementation 'vn.caresoft:voice-android-ui:1.0.2'
     implementation 'com.google.firebase:firebase-messaging:24.1.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20240303'
