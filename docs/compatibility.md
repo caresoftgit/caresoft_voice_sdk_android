@@ -1,22 +1,21 @@
 # Yêu cầu và khả năng tương thích
 
-| Thành phần | Bản bàn giao 1.0.0 |
+| Thành phần | Bản bàn giao 1.0.1 |
 |---|---|
-| Android | API 26+; demo compile/target SDK 35 |
+| Android tối thiểu | Android 8.0 / API 26 |
+| Demo compile/target SDK | 35 |
 | JDK / Gradle / Android Gradle Plugin | 17 / 8.10.2 / 8.7.2 |
-| Kotlin | 2.0.21 |
-| UI | Android Views; không bắt buộc Compose/AppCompat |
-| API Java | Callback façade, module consumer đã compile |
-| Native WebRTC | `org.jitsi:webrtc:124.0.0` |
-| Mạng | HTTPS/WSS, WebRTC ICE/DTLS-SRTP; STUN/TURN theo môi trường |
-| ABI của WebRTC dependency | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Kotlin của demo | 2.0.21 |
+| UI tùy chọn | Android Views; không bắt buộc Compose/AppCompat |
+| Java | API callback; có module `consumer-java` |
 
-SDK độc lập, không cần React Native, JavaScriptCore hoặc WebView. Một process có một client hoạt động và một cuộc gọi tại một thời điểm. Không cung cấp video, conference, transfer hoặc API điều khiển ghi âm trong 1.0.0.
+Một process dùng một client và một cuộc gọi tại một thời điểm. Bản 1.0.1 không cung cấp video, hội nghị, chuyển cuộc gọi hoặc API điều khiển ghi âm. Không tự di chuyển phiên đăng nhập từ SDK nền tảng khác.
 
-Không liên kết nhiều bản thư viện cùng chứa `org.webrtc` trong một app. Kiểm tra dependency graph nếu app đã dùng WebRTC. Không có migration tự động phiên đăng nhập từ SDK nền tảng khác.
+Host phải có micro, kết nối mạng và khả năng cuộc gọi của Android. Kiểm tra merged manifest và quyền trước khi gọi/nhận; không yêu cầu ứng dụng trở thành dialer mặc định.
 
-Android 12+ giới hạn mở UI/foreground service ở nền; Android 13+ có quyền thông báo; Android 14+ giới hạn microphone while-in-use và full-screen intent. Force-stop có thể chặn push đến khi người dùng mở app. Cần nghiệm thu thực tế Doze, OEM battery policy, DND, khóa màn hình và cold-start.
+- Android 12+: giới hạn mở UI và chạy foreground service từ nền; xin `BLUETOOTH_CONNECT` nếu dùng Bluetooth.
+- Android 13+: xin `POST_NOTIFICATIONS` để bảo đảm người dùng thấy thông báo cuộc gọi.
+- Android 14+: kiểm tra quyền full-screen intent và giới hạn micro khi app ở nền; cung cấp đường mở app từ thông báo.
+- Mọi phiên bản: cài đặt chuông, DND, Doze và chính sách pin của hãng có thể ảnh hưởng thông báo. Force-stop có thể chặn push đến khi người dùng mở app lại.
 
-Đã thử gọi ra, nhận cuộc gọi, âm thanh hai chiều, remote hangup và chuyển loa trên Samsung A23/Android 14 trong môi trường nghiệm thu. Đây không phải chứng nhận toàn bộ thiết bị/OS. API26–27 audio focus legacy, Bluetooth, TURN-only, chuyển mạng và cuộc gọi dài cần kiểm thử theo sản phẩm khách hàng.
-
-Binary WebRTC 64-bit đã kiểm tra ELF LOAD alignment 16 KiB; 32-bit dùng 4 KiB. Kiểm tra cấu trúc không thay thế chạy app/audio trên thiết bị page-size 16 KiB. Kiểm tra APK/AAB cuối với tất cả native dependency trước phát hành.
+Khi phát hành, kiểm tra APK/AAB cuối với ABI và yêu cầu page-size của các thiết bị mục tiêu. Build thành công không thay thế kiểm thử nghe/gọi trên thiết bị thật. Dùng [checklist nghiệm thu](testing.md) cho ma trận Android, thiết bị và mạng của sản phẩm.

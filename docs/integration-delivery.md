@@ -1,20 +1,20 @@
-# Nội dung gói cài đặt 1.0.0
+# Nội dung gói cài đặt 1.0.1
 
 | Đường dẫn | Nội dung |
 |---|---|
-| `packages/CaresoftVoice-Android-1.0.0-binary.zip` | Maven repository gồm core/UI AAR và POM/Gradle metadata |
-| `packages/caresoft-voice-demo-1.0.0-debug.apk` | APK demo sạch để thử tích hợp; debug signing, không dùng để phát hành store |
-| `packages/CaresoftVoice-Android-1.0.0-integration.zip` | Bản ZIP của repo tích hợp: demo, binary, tài liệu, examples và wrapper |
-| `packages/release.json`, `packages/SHA256SUMS` | Phiên bản, kích thước, checksum gói cài đặt/APK |
-| `scripts/setup-sdk.py` | Kiểm tra SHA-256 và giải nén binary vào `packages/maven` |
+| `packages/CaresoftVoice-Android-1.0.1-binary.zip` | Maven repository chứa SDK core/UI và metadata |
+| `packages/caresoft-voice-demo-1.0.1-debug.apk` | APK demo thử tích hợp, debug signing |
+| `packages/CaresoftVoice-Android-1.0.1-integration.zip` | ZIP bộ tích hợp: demo, binary, tài liệu, examples và wrapper |
+| `packages/release.json`, `packages/SHA256SUMS` | Phiên bản, kích thước và SHA-256 |
+| `scripts/setup-sdk.py` | Kiểm tra checksum, giải nén binary vào `packages/maven` |
 | `demo/` | Demo Kotlin dùng binary SDK |
-| `consumer-java/`, `integration/examples/` | Ví dụ Java/Kotlin đã compile |
-| `docs/` | Hướng dẫn Markdown và HTML |
+| `consumer-java/`, `integration/examples/` | Ví dụ Java/Kotlin |
+| `docs/caresoft-voice-android.html` | Bộ tài liệu tích hợp đọc offline |
 
-Core không nhúng WebRTC, OkHttp, Socket.IO hoặc coroutines. Giữ POM/Gradle metadata và repository Google/Maven Central để nhận dependency bắc cầu. ZIP không phải mirror offline toàn bộ Maven Central.
+Giữ toàn bộ Maven repository cùng POM/Gradle metadata. Lần resolve đầu cần truy cập Google Maven/Maven Central để tải dependency; gói cài đặt không phải mirror offline toàn bộ các repository này.
 
-Gói không chứa source SDK/UI, source JAR, file môi trường local, Google services JSON, khóa APNs hoặc keystore phát hành. Class bytecode trong AAR/APK có thể được phân tích như mọi binary Android; bộ bàn giao không hứa bảo vệ mã bằng cơ chế chống dịch ngược.
+Gói không chứa source SDK/UI, source JAR, cấu hình môi trường thực, `google-services.json`, khóa riêng hoặc keystore phát hành. APK demo chỉ để thử; phát hành ứng dụng của bạn bằng signing riêng.
 
-Khi nâng phiên bản: tải tag tương ứng, kiểm tra checksum, chạy lại setup và build/kiểm thử app. Không đặt code tùy chỉnh trong `packages/maven`; script thay thế thư mục sinh này. Kiểm tra xung đột dependency nếu app đã chứa WebRTC/Socket.IO.
+Khi nâng phiên bản: tải bản tương ứng, kiểm tra checksum, chạy lại setup, cập nhật dependency rồi build và nghiệm thu app. Không đặt code tùy chỉnh trong `packages/maven` vì đây là thư mục sinh lại. Không thêm AAR bằng `flatDir` làm mất thông tin dependency.
 
-`release.json` ghi checksum binary/APK. `SHA256SUMS` ngoài cùng còn ghi checksum integration ZIP. Integration ZIP không chứa chính nó hoặc file SHA256SUMS ngoài cùng; sau giải nén, setup kiểm tra binary bằng release.json như khi clone repo.
+`release.json` ghi checksum binary/APK. `SHA256SUMS` ngoài cùng còn ghi checksum integration ZIP. Integration ZIP không chứa chính nó hoặc `SHA256SUMS` ngoài cùng; sau giải nén, setup kiểm tra binary bằng `release.json` như khi clone repo.

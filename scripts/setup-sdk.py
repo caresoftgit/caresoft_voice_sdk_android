@@ -25,7 +25,7 @@ def install(root=ROOT):
             for entry in bundle.infolist():
                 path = PurePosixPath(entry.filename)
                 if (not path.parts or path.is_absolute() or '..' in path.parts
-                        or path.parts[0] not in {'maven', 'THIRD_PARTY_NOTICES.md'}
+                        or path.parts[0] not in {'maven', 'THIRD_PARTY_NOTICES.md', 'licenses'}
                         or '\\' in entry.filename or (entry.external_attr >> 16) & 0o170000 == 0o120000):
                     raise ValueError('Unsafe SDK archive entry')
             bundle.extractall(staging)

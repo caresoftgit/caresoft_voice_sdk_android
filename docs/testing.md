@@ -1,32 +1,37 @@
-# Checklist tích hợp
+# Checklist tích hợp 1.0.1
 
-## Build và cài đặt
+## Build và cấu hình
 
-- Chạy `python3 scripts/setup-sdk.py` và `python3 scripts/check-delivery.py`; build demo/consumer Java bằng JDK17.
-- Build không có google-services.json vẫn thành công, nhưng phải cấu hình Firebase đúng package trước khi thử incoming push.
-- Kiểm tra merged manifest, dependency graph, signing và native ABI/page-size của APK/AAB cuối.
+- Chạy `python3 scripts/setup-sdk.py` và `python3 scripts/check-delivery.py`; build demo/consumer Java bằng JDK 17.
+- Dùng cả hai dependency phiên bản `1.0.1`; giữ Maven metadata khi chép sang app riêng.
+- Cấu hình Firebase đúng applicationId và cấu hình gửi push phía backend; không đưa khóa ký hoặc service-account vào app.
+- Kiểm tra merged manifest, signing, ABI/page-size và yêu cầu phát hành của APK/AAB cuối.
 
-## Phiên và cấu hình
+## Phiên và nhân viên
 
-- Đăng nhập đúng domain/App ID/C2C; token sai/hết hạn, HTTPS lỗi, offline được báo đúng.
-- Mở lại app kiểm tra phiên đã lưu; UNKNOWN giữ phiên, không tự đổi thành đăng xuất.
-- Logout/đổi agent/tenant không khôi phục credential hoặc công việc đăng ký push của tài khoản cũ.
-- Backend cấp token mới không cần đóng gói khóa ký trong app; không log credential.
+- Đăng nhập đúng cấu hình; token sai/hết hạn, HTTPS lỗi và offline báo lỗi rõ ràng.
+- Mở lại app và kiểm tra phiên đã lưu; `UNKNOWN` không tự bị coi là đã đăng xuất.
+- Provider lấy được token mới từ backend đã xác thực, không cần đóng gói khóa ký.
+- Logout/đổi tài khoản không khôi phục phiên hoặc đăng ký push của nhân viên cũ.
+- Chọn thiết bị điện thoại, trạng thái sẵn sàng và đầu số được phép gọi.
 
-## Gọi và âm thanh
+## Cuộc gọi và UI
 
-- Đọc/chọn Mobile và ca trực, tải/chọn đầu số được phép gọi.
-- Gọi đi: ringing, bên kia nhận, ACTIVE, nói **hai chiều**, remote/local hangup; UI và system call cùng kết thúc.
-- Gọi vào: bấm nhận/từ chối/cancel từ đối ứng; nhận không bị kẹt ở CONNECTING; gọi đến lặp không tạo hai call.
-- Mute/unmute, hold/unhold, DTMF, loa trong/loa ngoài/tai nghe/Bluetooth; kiểm tra **tiếng thực tế**, không chỉ icon hoặc callback.
-- Xoay/đổi màn hình, vào nền rồi quay lại không tạo/start call lần hai. Mất audio focus không phát mic trái trạng thái OS.
-- Mạng Wi-Fi/mobile, TURN-only, rớt mạng/đổi mạng, cuộc gọi dài và hết session timer.
+- Gọi đi: đổ chuông, nhận, `ACTIVE`, tiếng **hai chiều**, local/remote hangup.
+- Gọi đến: nhận/từ chối, đối ứng hủy, lặp push không tạo hai cuộc gọi, không kẹt ở kết nối.
+- Mute/unmute, hold/unhold, DTMF, loa trong/loa ngoài/tai nghe/Bluetooth; xác nhận tiếng thực tế.
+- `VoiceCallView`: incoming, active, bàn phím DTMF, nhãn đầu số, thời lượng và thông tin kết thúc.
+- Xoay màn hình, ẩn/quay lại UI và đổi UI không tạo/start lại call; `unbind()` không kết thúc cuộc gọi.
+- Giữ kết quả `ENDED` đến khi người dùng đóng; cuộc gọi tiếp theo tạo object mới.
+- Wi-Fi/mobile data, VPN/firewall của sản phẩm, mạng yếu/đổi mạng và cuộc gọi dài.
 
-## FCM và nền Android
+## Push, chuông và nền Android
 
-- FCM token mới khi chưa login, token rotation trong nền/process restart, lỗi đăng ký rồi retry, đổi tài khoản trong lúc job đang chạy.
-- Incoming khi app foreground/background/khóa/cold-start, thông báo bị từ chối, full-screen intent không được cấp.
-- Android 12–15 microphone/FGS restrictions, Doze/OEM battery policy, DND, reboot và force-stop.
-- Đối chiếu đăng ký token với backend; Firebase initialization không chứng minh FCM delivery.
+- Token mới khi chưa login, token rotation trong nền, process restart, retry lỗi và đổi tài khoản lúc job đang chạy.
+- Incoming ở foreground/background/khóa/cold-start, cả khi không có Activity.
+- Chuông/rung theo kênh **Cuộc gọi đến**, âm lượng chuông và DND; nhận/từ chối/kết thúc dừng thông báo phù hợp.
+- Từ chối quyền micro/thông báo/Bluetooth/full-screen và mở lại phần cài đặt để cấp quyền.
+- Android 12–15, Doze, chính sách pin OEM, reboot và force-stop.
+- Đối chiếu đăng ký token phía backend; chỉ khởi tạo Firebase chưa chứng minh nhận được cuộc gọi.
 
-Bản 1.0.0 đã có kiểm thử JVM và build consumer binary; gọi đi/vào và chuyển loa đã được thử trên Samsung A23/Android14. Khách hàng vẫn cần nghiệm thu ma trận thiết bị, mạng và backend riêng; phiên bản 1.0.0 không chứng nhận mọi ca ở trên đã đạt.
+Ghi nhận thiết bị, Android, phiên bản app/SDK, mạng và kết quả từng ca. APK build thành công hoặc kết quả trên một máy không chứng nhận toàn bộ các ca trên.

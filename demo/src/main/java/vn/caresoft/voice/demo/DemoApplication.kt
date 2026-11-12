@@ -192,7 +192,7 @@ class DemoApplication : Application() {
                                     ?: throw VoiceError("LOGIN_REQUIRED", "tokenProvider")
                         },
                     iceServers = DemoConfiguration.parseIce(iceJSON),
-                    appVersionCode = "10000",
+                    appVersionCode = BuildConfig.VERSION_CODE.toString(),
                     pushConfig = AppPushConfig(packageName, "default"),
                     appName = "Caresoft Voice Demo",
                     operationTimeoutMs = 45000,

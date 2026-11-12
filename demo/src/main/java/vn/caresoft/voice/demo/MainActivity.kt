@@ -155,6 +155,10 @@ class MainActivity : Activity() {
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
             )
+        if (page == "call" && app.sdkUi && app.displayedCall != null) {
+            sdkCallScreen(app.displayedCall!!)
+            return
+        }
         content =
             LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
@@ -212,6 +216,7 @@ class MainActivity : Activity() {
             render()
         }
         text("Nhập cấu hình ứng dụng được Caresoft cấp để bắt đầu.", 12)
+
     }
 
     private fun sessionScreen() {
@@ -572,6 +577,64 @@ class MainActivity : Activity() {
         }
     }
 
+    /** The SDK view owns scrolling and its reachable call-action footer. */
+    private fun sdkCallScreen(call: VoiceCall) {
+        notice = null
+        val root = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setBackgroundColor(Color.rgb(244, 247, 247))
+        }
+        root.setOnApplyWindowInsetsListener { view, insets ->
+            view.setPadding(insets.systemWindowInsetLeft, insets.systemWindowInsetTop,
+                insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
+            insets
+        }
+        val toolbar = LinearLayout(this).apply {
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(12), dp(4), dp(12), dp(4))
+        }
+        toolbar.addView(Button(this).apply {
+            text = "‹  Bàn phím"; isAllCaps = false
+            setTextColor(Color.rgb(8, 126, 117))
+            setBackgroundColor(Color.TRANSPARENT)
+            setOnClickListener { page = "dialer"; render() }
+        }, LinearLayout.LayoutParams(0, dp(48), 1f))
+        toolbar.addView(TextView(this).apply {
+            text = "CARESOFT VOICE"; textSize = 11f
+            setTextColor(Color.rgb(100, 117, 122)); gravity = Gravity.CENTER
+            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+        }, LinearLayout.LayoutParams(0, dp(48), 1f))
+        toolbar.addView(Button(this).apply {
+            text = "•••"; contentDescription = "Tùy chọn cuộc gọi"; isAllCaps = false
+            setTextColor(Color.rgb(8, 126, 117)); setBackgroundColor(Color.TRANSPARENT)
+            setOnClickListener { anchor ->
+                PopupMenu(this@MainActivity, anchor).apply {
+                    menu.add("Dùng UI tự dựng").setOnMenuItemClickListener {
+                        app.sdkUi = false; page = "call"; render(); true
+                    }
+                    if (call.getSnapshot().state == CallState.ENDED)
+                        menu.add("Đóng chi tiết").setOnMenuItemClickListener {
+                            app.displayedCall = null; observedCallId = null
+                            page = "dialer"; render(); true
+                        }
+                    show()
+                }
+            }
+        }, LinearLayout.LayoutParams(dp(56), dp(48)))
+        root.addView(toolbar)
+        callView = VoiceCallView(this).also {
+            it.lineLabel = app.callLineLabel
+            root.addView(it, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f))
+            it.bind(call)
+        }
+        setContentView(root)
+        callSubscription = call.observe { event, _ ->
+            if (event is CallEvent.Changed && event.snapshot.state != CallState.RINGING)
+                window.clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+        }
+    }
+
     private fun callScreen() {
         val call =
             app.displayedCall
@@ -591,7 +654,8 @@ class MainActivity : Activity() {
         if (app.sdkUi) {
             callView =
                 VoiceCallView(this).also {
-                    content.addView(it)
+                    it.lineLabel = app.callLineLabel
+                    content.addView(it, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp(640)))
                     it.bind(call)
                 }
         } else {

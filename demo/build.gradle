@@ -1,14 +1,15 @@
 plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
 android {
+    buildFeatures { buildConfig true }
     namespace 'vn.caresoft.voice.demo'; compileSdk 35
-    defaultConfig { applicationId 'vn.caresoft.voice.demo'; minSdk 26; targetSdk 35; versionCode 10000; versionName '1.0.0' }
+    defaultConfig { applicationId 'vn.caresoft.voice.demo'; minSdk 26; targetSdk 35; versionCode providers.gradleProperty('voiceDemoVersionCode').get().toInteger(); versionName providers.gradleProperty('voiceSdkVersion').get() }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
     kotlinOptions { jvmTarget = '17' }
     buildTypes { release { minifyEnabled false } }
 }
 dependencies {
-    implementation 'vn.caresoft:voice-android:1.0.0'
-    implementation 'vn.caresoft:voice-android-ui:1.0.0'
+    implementation 'vn.caresoft:voice-android:1.0.1'
+    implementation 'vn.caresoft:voice-android-ui:1.0.1'
     implementation 'com.google.firebase:firebase-messaging:24.1.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20240303'

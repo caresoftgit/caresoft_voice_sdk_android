@@ -1,27 +1,27 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Caresoft Voice Android native</title><style>body{font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f6f8;color:#123047;margin:0}main{max-width:1080px;margin:30px auto;padding:48px;background:white;border-radius:18px}h1,h2,h3{line-height:1.3;color:#087e75}h2{margin-top:44px;border-top:1px solid #dfe7eb;padding-top:22px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #dfe7eb;padding:10px;text-align:left}pre{background:#123047;color:white;padding:20px;border-radius:12px;overflow:auto}code{font-family:monospace}a{color:#087e75}img{max-width:360px;width:100%;height:auto}footer{margin-top:40px;font-size:13px;color:#647787}@media(max-width:700px){main{padding:22px;margin:0;border-radius:0}h1{font-size:28px}}@media print{main{margin:0;padding:0;max-width:none}h2{break-before:page}pre{white-space:pre-wrap;background:#f3f6f8;color:#123047}tr{break-inside:avoid}}</style></head><body><main><h1 id="tich-hop-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</h1>
-<p><strong>1.0.0 · Android API 26+ · Kotlin/Java</strong></p>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Caresoft Voice Android 1.0.1 — Tài liệu tích hợp</title><style>body{font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f6f8;color:#123047;margin:0}main{max-width:1080px;margin:30px auto;padding:48px;background:white;border-radius:18px}nav{padding:18px;background:#edf7f5;border-radius:12px}nav a{display:inline-block;margin:4px 14px 4px 0}h1,h2,h3{line-height:1.3;color:#087e75}h2{margin-top:44px;border-top:1px solid #dfe7eb;padding-top:22px}section+section{margin-top:72px;border-top:4px solid #087e75;padding-top:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #dfe7eb;padding:10px;text-align:left;overflow-wrap:anywhere}pre{background:#123047;color:white;padding:20px;border-radius:12px;overflow:auto}code{font-family:monospace}a{color:#087e75}img{max-width:360px;width:100%;height:auto}footer{margin-top:40px;font-size:13px;color:#647787}@media(max-width:700px){main{padding:22px;margin:0;border-radius:0}h1{font-size:28px}table{font-size:14px}td,th{padding:6px}}@media print{main{margin:0;padding:0;max-width:none}h2,section+section{break-before:page}pre{white-space:pre-wrap;background:#f3f6f8;color:#123047}tr{break-inside:avoid}}</style></head><body><main><nav aria-label="Tài liệu"><a href="#guide">Tích hợp</a><a href="#api">API Kotlin/Java</a><a href="#backend">Backend và Firebase</a><a href="#compatibility">Yêu cầu Android</a><a href="#security">Bảo vệ credential</a><a href="#testing">Nghiệm thu</a><a href="#troubleshooting">Xử lý lỗi</a><a href="#delivery">Gói cài đặt</a></nav><section id="guide"><h1 id="guide-tích-hợp-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</h1>
+<p><strong>1.0.1 · Android API 26+ · Kotlin/Java</strong></p>
 <div class="toc">
 <ul>
-<li><a href="#tich-hop-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</a><ul>
-<li><a href="#1-chuan-bi">1. Chuẩn bị</a></li>
-<li><a href="#2-cai-sdk-vao-ung-dung">2. Cài SDK vào ứng dụng</a></li>
-<li><a href="#3-quyen-va-thanh-phan-android">3. Quyền và thành phần Android</a></li>
-<li><a href="#4-khoi-tao-client-va-phien">4. Khởi tạo client và phiên</a></li>
-<li><a href="#5-nhan-vien-va-au-so-goi-ra">5. Nhân viên và đầu số gọi ra</a></li>
-<li><a href="#6-goi-i">6. Gọi đi</a></li>
-<li><a href="#7-nhan-cuoc-goi-bang-fcm">7. Nhận cuộc gọi bằng FCM</a></li>
-<li><a href="#8-ui-cuoc-goi">8. UI cuộc gọi</a></li>
-<li><a href="#9-ieu-khien-cuoc-goi">9. Điều khiển cuộc gọi</a></li>
-<li><a href="#10-java-loi-va-vong-oi">10. Java, lỗi và vòng đời</a></li>
-<li><a href="#11-nghiem-thu-truoc-phat-hanh">11. Nghiệm thu trước phát hành</a></li>
+<li><a href="#guide-tích-hợp-caresoft-voice-sdk-android">Tích hợp Caresoft Voice SDK Android</a><ul>
+<li><a href="#guide-1-chuẩn-bị">1. Chuẩn bị</a></li>
+<li><a href="#guide-2-cài-sdk-vào-ứng-dụng">2. Cài SDK vào ứng dụng</a></li>
+<li><a href="#guide-3-quyền-và-thành-phần-android">3. Quyền và thành phần Android</a></li>
+<li><a href="#guide-4-khởi-tạo-client-và-phiên">4. Khởi tạo client và phiên</a></li>
+<li><a href="#guide-5-nhân-viên-và-đầu-số-gọi-ra">5. Nhân viên và đầu số gọi ra</a></li>
+<li><a href="#guide-6-gọi-đi">6. Gọi đi</a></li>
+<li><a href="#guide-7-nhận-cuộc-gọi-bằng-fcm">7. Nhận cuộc gọi bằng FCM</a></li>
+<li><a href="#guide-8-ui-cuộc-gọi">8. UI cuộc gọi</a></li>
+<li><a href="#guide-9-điều-khiển-cuộc-gọi">9. Điều khiển cuộc gọi</a></li>
+<li><a href="#guide-10-java-lỗi-và-vòng-đời">10. Java, lỗi và vòng đời</a></li>
+<li><a href="#guide-11-nghiệm-thu-trước-phát-hành">11. Nghiệm thu trước phát hành</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<h2 id="1-chuan-bi">1. Chuẩn bị</h2>
-<p>Cần JDK 17, Android SDK 35 và Gradle wrapper có trong repo. Chuẩn bị domain, API URL HTTPS, Voice App ID, backend cấp C2C token, package Android và Firebase project theo <a href="backend-contract.md">cấu hình backend</a>. ICE/STUN/TURN phải dùng cấu hình được cấp cho môi trường của bạn.</p>
+<h2 id="guide-1-chuẩn-bị">1. Chuẩn bị</h2>
+<p>Cần JDK 17, Android SDK 35 và Gradle wrapper có trong repo. Chuẩn bị domain, API URL HTTPS, Voice App ID, backend cấp C2C token, package Android và Firebase project theo <a href="#backend">cấu hình backend</a>. Chỉ dùng cấu hình do quản trị cấp cho ứng dụng của bạn.</p>
 <p>Repo không chứa tài khoản hoặc môi trường mẫu đã đăng ký. Bản APK cài sẵn mở ở màn hình đăng nhập trống, không tự tạo cuộc gọi. App ID và API URL phải nhập trước khi đăng nhập.</p>
-<h2 id="2-cai-sdk-vao-ung-dung">2. Cài SDK vào ứng dụng</h2>
+<h2 id="guide-2-cài-sdk-vào-ứng-dụng">2. Cài SDK vào ứng dụng</h2>
 <p>Chạy ở root repo:</p>
 <pre><code class="language-sh">python3 scripts/setup-sdk.py
 ./gradlew :demo:assembleDebug :consumer-java:assembleDebug
@@ -38,12 +38,12 @@
 </code></pre>
 <p>Trong module app:</p>
 <pre><code class="language-groovy">dependencies {
-    implementation 'vn.caresoft:voice-android:1.0.0'
-    implementation 'vn.caresoft:voice-android-ui:1.0.0' // tùy chọn
+    implementation 'vn.caresoft:voice-android:1.0.1'
+    implementation 'vn.caresoft:voice-android-ui:1.0.1' // tùy chọn
 }
 </code></pre>
-<p>Giữ toàn bộ AAR/POM/Gradle metadata. AAR core không nhúng dependency bắc cầu. Không dùng <code>flatDir</code> rồi bỏ dependency WebRTC/coroutines/OkHttp/Socket.IO; không thêm đồng thời nhiều thư viện cùng chứa <code>org.webrtc</code>.</p>
-<h2 id="3-quyen-va-thanh-phan-android">3. Quyền và thành phần Android</h2>
+<p>Giữ toàn bộ Maven repository cùng AAR/POM/Gradle metadata để Gradle lấy đủ dependency. Không dùng <code>flatDir</code> chỉ chép riêng AAR. Đặt <code>minSdk</code> của app từ 26 trở lên; dùng demo làm cấu hình build tham khảo.</p>
+<h2 id="guide-3-quyền-và-thành-phần-android">3. Quyền và thành phần Android</h2>
 <p>SDK merge ConnectionService, receiver và foreground service vào manifest host. Kiểm tra merged manifest và bảo đảm host có quyền phù hợp:</p>
 <table>
 <thead>
@@ -70,7 +70,7 @@
 <td>Self-managed Telecom; không yêu cầu app làm dialer mặc định</td>
 </tr>
 <tr>
-<td>FOREGROUND_SERVICE/PHONE_CALL/MICROPHONE</td>
+<td>FOREGROUND_SERVICE, FOREGROUND_SERVICE_PHONE_CALL, FOREGROUND_SERVICE_MICROPHONE</td>
 <td>Dịch vụ nghe/gọi theo Android target SDK</td>
 </tr>
 <tr>
@@ -79,8 +79,9 @@
 </tr>
 </tbody>
 </table>
-<p>Không cần READ_PHONE_NUMBERS chỉ để dùng cuộc gọi VoIP. Không bỏ kiểm tra microphone hoặc dùng FCM để mở micro trái giới hạn OS. Xem manifest demo và <a href="compatibility.md">khả năng tương thích</a>.</p>
-<h2 id="4-khoi-tao-client-va-phien">4. Khởi tạo client và phiên</h2>
+<p>Không cần READ_PHONE_NUMBERS chỉ để dùng cuộc gọi VoIP. Không bỏ kiểm tra microphone hoặc dùng FCM để mở micro trái giới hạn OS. Xem manifest demo và <a href="#compatibility">khả năng tương thích</a>.</p>
+<h2 id="guide-4-khởi-tạo-client-và-phiên">4. Khởi tạo client và phiên</h2>
+<p>Các lớp SDK dùng package <code>vn.caresoft.voice</code>; UI dùng <code>vn.caresoft.voice.ui.VoiceCallView</code>.</p>
 <p>Giữ một <code>CaresoftVoiceClient</code> ở Application/service lâu hơn vòng đời Activity. Tạo client/createCall trên main thread, gọi suspend API từ coroutine có scope phù hợp. <code>installationId</code> phải ổn định trên một cài đặt và không dùng mã thiết bị nhạy cảm.</p>
 <pre><code class="language-kotlin">val options = VoiceOptions(
     domain = domain,
@@ -88,7 +89,6 @@
     apiBaseUrl = apiUrl,
     installationId = installationId,
     tokenProvider = TokenProvider { authenticatedBackend.fetchC2CToken() },
-    iceServers = environmentIceServers,
     appVersionCode = appVersionCode,
     pushConfig = AppPushConfig(context.packageName, &quot;default&quot;)
 )
@@ -103,18 +103,27 @@ CaresoftVoicePush.configure(client)
 <li>Không chuyển UI thành đăng nhập thành công trước khi API hoàn tất. Không coi lỗi mạng là sai mật khẩu.</li>
 </ul>
 <p>Demo xóa token nhập tay sau connect; khi phiên hết hạn cần nhập lại. Provider production phải tự lấy token mới từ backend đã xác thực.</p>
-<h2 id="5-nhan-vien-va-au-so-goi-ra">5. Nhân viên và đầu số gọi ra</h2>
+<h2 id="guide-5-nhân-viên-và-đầu-số-gọi-ra">5. Nhân viên và đầu số gọi ra</h2>
 <p>Đọc <code>getAvailability()</code> và <code>getCallDevice()</code>. Chọn Mobile bằng <code>selectCallDevice(CallDevice.MOBILE)</code>, bật sẵn sàng bằng <code>setAvailability(Availability.AVAILABLE)</code> theo thao tác người dùng. Đăng nhập không tự đổi hai lựa chọn này. Không đổi thiết bị trong lúc có cuộc gọi.</p>
 <p><code>getCallingLines()</code> trả các <code>CallingLine(id, label, isDefault)</code>. Hiển thị label, truyền <strong>id</strong> được chọn vào <code>CallOptions.callerId</code>; không dùng số hiển thị làm id. Khi tải thất bại, báo lỗi và cho thử lại, không giả thành danh sách rỗng thành công.</p>
-<h2 id="6-goi-i">6. Gọi đi</h2>
-<p>Sau khi đã có phiên, quyền microphone và cấu hình thoại:</p>
+<h2 id="guide-6-gọi-đi">6. Gọi đi</h2>
+<p>Sau khi đã có phiên và quyền microphone, chạy từ coroutine trên main thread:</p>
 <pre><code class="language-kotlin">val call = client.createCall(CallOptions(to = phoneNumber, callerId = selectedLineId))
 call.start()
 </code></pre>
 <p><code>createCall()</code> giữ chỗ cuộc gọi đồng bộ; chỉ một call hoạt động. Không tạo/start lại khi Activity xoay màn hình. Giữ call ở tầng Application/service, dùng <code>getActiveCall()</code> để gắn lại UI.</p>
-<p>Trạng thái công khai: NEW → DIALING/RINGING/CONNECTING → ACTIVE → ENDED. ACTIVE xác nhận signaling; <code>mediaState</code> phản ánh đường media riêng. Kết nối socket không chứng minh cuộc gọi hoạt động hoặc có âm thanh.</p>
-<h2 id="7-nhan-cuoc-goi-bang-fcm">7. Nhận cuộc gọi bằng FCM</h2>
-<p>Host sở hữu <code>FirebaseMessagingService</code>. Đăng ký Android client đúng package và cấu hình server cùng project theo <a href="backend-contract.md#firebase-và-cuộc-gọi-đến">hướng dẫn FCM</a>.</p>
+<p>Trạng thái công khai: NEW → DIALING/RINGING/CONNECTING → ACTIVE → ENDED. Theo dõi cả <code>state</code> và <code>mediaState</code>; phải thử tiếng hai chiều để xác nhận cuộc gọi có âm thanh. Không coi kết nối client là cuộc gọi đã được nhận.</p>
+<h2 id="guide-7-nhận-cuộc-gọi-bằng-fcm">7. Nhận cuộc gọi bằng FCM</h2>
+<p>Host sở hữu <code>FirebaseMessagingService</code>. Đăng ký Android client đúng package và cấu hình server cùng project theo <a href="#backend-firebase-và-cuộc-gọi-đến">hướng dẫn FCM</a>. Nếu app đã có messaging service, forward message từ service đó; không khai báo thêm service thứ hai cho cùng sự kiện. Với app chưa có service, khai báo service của bạn trong <code>&lt;application&gt;</code>:</p>
+<pre><code class="language-xml">&lt;service
+    android:name=&quot;.VoiceMessagingService&quot;
+    android:exported=&quot;false&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;com.google.firebase.MESSAGING_EVENT&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/service&gt;
+</code></pre>
+<p><code>VoiceMessagingService</code> là lớp do host triển khai, kế thừa <code>FirebaseMessagingService</code>. Xem <a href="../demo/src/main/java/vn/caresoft/voice/demo/DemoMessagingService.kt">service demo</a> và <a href="../demo/src/main/java/vn/caresoft/voice/demo/DemoTokenJobService.kt">đăng ký token trong demo</a>.</p>
 <p>Sau đăng nhập, lấy FCM token và đăng ký:</p>
 <pre><code class="language-kotlin">client.registerPushToken(
     PushRegistration(fcmToken, installationId, context.packageName, &quot;default&quot;)
@@ -125,30 +134,587 @@ call.start()
 <pre><code class="language-kotlin">// Chạy trong cửa sổ xử lý FCM và coroutine theo lifecycle của host.
 CaresoftVoicePush.receive(message.data)
 </code></pre>
-<p>SDK không tạo FirebaseMessagingService thứ hai. Không log data payload. Quan sát <code>ClientEvent.IncomingCall</code>, giữ VoiceCall và hiển thị UI của app. Khi người dùng bấm nhận, kiểm tra quyền microphone rồi gọi <code>call.answer()</code>; từ chối dùng <code>call.reject()</code>.</p>
+<p>SDK không tạo FirebaseMessagingService thứ hai. Không log data payload. Quan sát <code>ClientEvent.IncomingCall</code> và <code>ClientEvent.CallRestored</code>, giữ <code>VoiceCall</code> rồi hiển thị UI. Khi Activity mở lại từ thông báo, gọi <code>getActiveCall()</code> để lấy cuộc gọi hiện tại. UI riêng gọi <code>call.answer()</code> để nhận, <code>call.reject()</code> để từ chối; quyền micro cần cấp ở foreground trước khi nhận.</p>
 <p>Trên Android 14+, app ở nền có thể bị chặn quyền microphone/foreground service; cung cấp notification mở app. High-priority data push không bảo đảm quyền chạy mọi tác vụ nền. Force-stop vẫn cần người dùng mở lại app. Xem demo đầy đủ thay vì chỉ chép vài dòng nhận message.</p>
-<h2 id="8-ui-cuoc-goi">8. UI cuộc gọi</h2>
-<p>UI có sẵn:</p>
-<pre><code class="language-kotlin">val callView = VoiceCallView(context)
+<h2 id="guide-8-ui-cuộc-gọi">8. UI cuộc gọi</h2>
+<p>Thêm dependency <code>voice-android-ui:1.0.1</code> nếu dùng màn hình sẵn có. <code>VoiceCallView</code> là Android View; đặt trong Activity/Fragment hoặc <code>AndroidView</code> của Compose. Host chịu trách nhiệm điều hướng, quyền runtime và giữ <code>VoiceCall</code> lâu hơn vòng đời màn hình.</p>
+<pre><code class="language-kotlin">// Trong Activity/Fragment, sau khi host đã xử lý quyền micro.
+val callView = VoiceCallView(requireContext())
+container.addView(callView, ViewGroup.LayoutParams(
+    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+callView.lineLabel = selectedLine?.label // tùy chọn; chỉ là nhãn hiển thị
 callView.bind(call)
-// Khi view bị hủy:
+
+// Trong Fragment.onDestroyView() hoặc lúc bỏ view khỏi màn hình:
 callView.unbind()
 </code></pre>
-<p>Tự dựng UI: dùng <code>call.snapshots</code> hoặc <code>call.observe</code>; map <code>CallEvent.Changed</code> sang trạng thái và <code>CallEvent.Error</code> sang thông báo. Hủy subscription khi view biến mất; không hangup/dispose chỉ vì đổi màn hình. Giữ snapshot ENDED để hiển thị nguyên nhân kết thúc trước khi trở lại bàn phím.</p>
-<p>Demo có <strong>UI của SDK / UI tự dựng</strong> sử dụng cùng VoiceCall. Ví dụ Java ở <a href="../consumer-java/src/main/java/vn/caresoft/voice/consumer/JavaConsumer.java">consumer-java</a>.</p>
-<h2 id="9-ieu-khien-cuoc-goi">9. Điều khiển cuộc gọi</h2>
+<p><code>container</code>, <code>selectedLine</code> và <code>call</code> là biến của app. Trong Activity dùng <code>this</code> thay <code>requireContext()</code>. <code>lineLabel</code> không thay đổi đầu số thực: truyền <code>selectedLine.id</code> vào <code>CallOptions.callerId</code> <strong>khi tạo cuộc gọi</strong>. Đặt lại nhãn khi bind một call khác hoặc đặt <code>null</code> để ẩn.</p>
+<table>
+<thead>
+<tr>
+<th>Trạng thái</th>
+<th>UI SDK hiển thị / xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Incoming đang đổ chuông</td>
+<td>Người gọi, Trả lời, Từ chối</td>
+</tr>
+<tr>
+<td>Outgoing mới tạo</td>
+<td>Nút Gọi; host có thể gọi <code>start()</code> trước khi hiển thị</td>
+</tr>
+<tr>
+<td>Đang kết nối</td>
+<td>Trạng thái và nút kết thúc</td>
+</tr>
+<tr>
+<td>ACTIVE</td>
+<td>Thời lượng, mute/unmute, hold/unhold, thiết bị âm thanh và bàn phím DTMF</td>
+</tr>
+<tr>
+<td>ENDED</td>
+<td>Thông tin cuộc gọi, thời lượng và lý do kết thúc; không còn nút điều khiển</td>
+</tr>
+</tbody>
+</table>
+<p><code>bind()</code> chỉ gắn UI; không tự gọi/nhận cuộc gọi. <code>unbind()</code> hủy quan sát UI; không hangup hoặc dispose. UI không xin quyền micro thay app. Xin quyền trước khi người dùng bấm Gọi/Trả lời; không tự nhận lại sau lỗi khi chưa kiểm tra trạng thái call.</p>
+<p>Giữ client và call ở Application/service của host. Khi xoay màn hình hoặc trở lại từ thông báo, lấy <code>client.getActiveCall()</code> và bind lại; không tạo/start một call mới. <code>getActiveCall()</code> không giữ cuộc gọi đã kết thúc: nếu muốn tiếp tục hiện chi tiết ENDED, host giữ tham chiếu call hoặc snapshot đến khi người dùng đóng. Thêm nút Đóng/Quay lại ở màn hình host, sau đó unbind và bỏ tham chiếu khi phù hợp. Cuộc gọi tiếp theo dùng object mới.</p>
+<p>Java dùng cùng UI:</p>
+<pre><code class="language-java">VoiceCallView callView = new VoiceCallView(this);
+callView.setLineLabel(selectedLine.getLabel());
+callView.bind(call);
+// Trong onDestroy() hoặc trước khi bỏ view:
+callView.unbind();
+</code></pre>
+<p>Tự dựng UI: dùng <code>call.snapshots</code> hoặc <code>call.observe</code>, đọc <code>call.getSnapshot()</code> ngay khi gắn màn hình và hủy <code>VoiceSubscription</code> khi view bị hủy. Hiển thị lỗi từ <code>CallEvent.Error</code>, cập nhật route từ <code>CallEvent.AudioRoutesChanged</code>; không hangup/dispose chỉ vì đổi màn hình. Không phát thêm chuông trong UI: thông báo cuộc gọi đến đã dùng chuông/rung hệ thống theo cài đặt người dùng.</p>
+<p>Demo có <strong>UI của SDK / UI tự dựng</strong> dùng chung một <code>VoiceCall</code>. Xem <a href="../demo/README.md">demo</a> và <a href="../consumer-java/src/main/java/vn/caresoft/voice/consumer/JavaConsumer.java">ví dụ Java</a>.</p>
+<h2 id="guide-9-điều-khiển-cuộc-gọi">9. Điều khiển cuộc gọi</h2>
 <ul>
 <li><code>setMuted(true/false)</code>, <code>setHeld(true/false)</code>: state thay đổi sau xác nhận server; lỗi cần hiển thị, không tự giả thành công.</li>
 <li><code>sendDTMF("123#")</code>: dùng khi ACTIVE; không gửi chuỗi ngoài 0–9/A–D/*/#.</li>
 <li><code>getAudioRoutes()</code>: danh sách route hệ thống hỗ trợ, với id/name/selected. <code>setAudioRoute(id)</code> gửi yêu cầu; cập nhật lựa chọn từ <code>CallEvent.AudioRoutesChanged</code>.</li>
-<li>Không hardcode AudioRoute id, không xin thêm AudioManager focus hoặc gọi <code>setCommunicationDevice</code> để tranh quyền với Telecom của cùng cuộc gọi.</li>
+<li>Không hardcode AudioRoute id, không xin thêm AudioManager focus hoặc gọi <code>setCommunicationDevice</code> để tranh quyền với SDK của cùng cuộc gọi.</li>
 <li><code>getStats()</code>: số liệu media có thể null khi chưa có mẫu. Byte count tăng không tự chứng minh người đối ứng nghe được âm thanh.</li>
 <li><code>hangup()</code> trả <code>EndResult(localEnded, serverAcknowledged)</code>. Kết thúc cục bộ có thể thành công dù server chưa xác nhận.</li>
 </ul>
-<p>Audio focus được SDK phối hợp với ConnectionService; mất focus chỉ ngắt local audio, không tự đổi server mute/hold. Chọn unhold vẫn là thao tác rõ ràng của người dùng.</p>
-<h2 id="10-java-loi-va-vong-oi">10. Java, lỗi và vòng đời</h2>
-<p>Java dùng <code>TokenProviders.fromCallback(CallbackTokenProvider)</code> để cấp token bất đồng bộ và overload <code>VoiceCallback&lt;T&gt;</code> để gọi API. Callback không được block main thread. Mẫu Java compile bao gồm đăng nhập, gọi, nhận, mute/hold, route, stats, push và logout.</p>
-<p><code>VoiceError</code> có <code>code</code>, <code>operation</code>, <code>retryable</code>, <code>callId</code>. Log mã lỗi/phiên bản/timestamp; không log token hoặc phản hồi mạng. Trước dispose, kết thúc cuộc gọi hiện tại. Đổi tenant/agent cần logout/dispose client cũ; gọi <code>CaresoftVoicePush.clear(oldClient)</code> để tránh trỏ tới phiên cũ.</p>
-<p><code>logout()</code> trả xác nhận riêng app session/voice session và việc xóa credential cục bộ. Không coi local clear là server đã thu hồi phiên. Xem <a href="api.md">API</a> và <a href="troubleshooting.md">xử lý lỗi</a>.</p>
-<h2 id="11-nghiem-thu-truoc-phat-hanh">11. Nghiệm thu trước phát hành</h2>
-<p>Chạy <a href="testing.md">checklist</a> trên thiết bị/OS của sản phẩm, gồm gọi ra, nhận từ nền/khóa/cold-start, hai chiều, route, token rotation, logout, mạng yếu và giới hạn OEM. Kết quả trên một máy hoặc APK build thành công không thay thế nghiệm thu các ca đó.</p><footer>Caresoft Voice Android · 1.0.0 · Native SDK</footer></main></body></html>
+<p>SDK quản lý âm thanh của cuộc gọi. Khi có cuộc gọi khác hoặc mất quyền âm thanh, kiểm tra trạng thái và tiếng thực tế trước khi tiếp tục; unhold là thao tác riêng của người dùng.</p>
+<h2 id="guide-10-java-lỗi-và-vòng-đời">10. Java, lỗi và vòng đời</h2>
+<p>Java dùng <code>TokenProviders.fromCallback(CallbackTokenProvider)</code> và overload <code>VoiceCallback&lt;T&gt;</code>. Backend cấp token bất đồng bộ; không block main thread. Ví dụ khởi tạo trên main thread:</p>
+<pre><code class="language-java">// backendTokenProvider: CallbackTokenProvider do app triển khai,
+// gọi backend đã xác thực rồi hoàn tất onSuccess(token) / onError(error).
+VoiceOptions options = new VoiceOptions(
+    domain, appId, apiUrl, installationId,
+    TokenProviders.fromCallback(backendTokenProvider),
+    java.util.Collections.emptyList(), appVersionCode,
+    new AppPushConfig(getPackageName(), &quot;default&quot;)
+);
+CaresoftVoiceClient client = new CaresoftVoiceClient(getApplicationContext(), options);
+CaresoftVoicePush.configure(client);
+client.connect(new VoiceCallback&lt;kotlin.Unit&gt;() {
+    @Override public void onSuccess(kotlin.Unit value) {
+        // Cập nhật màn hình đã đăng nhập; tải trạng thái nhân viên/đầu số.
+    }
+    @Override public void onError(VoiceError error) {
+        // Hiển thị lỗi; chỉ log error.getCode() và error.getOperation().
+    }
+});
+</code></pre>
+<p>Các biến cấu hình và provider trên do app cung cấp. Với gọi đi, tạo <code>VoiceCall call = client.createCall(new CallOptions(number));</code> trên main thread, giữ call rồi gọi <code>call.start(callback)</code>. Không tạo call lại từ callback UI khi xoay màn hình. Java nhận FCM qua <code>client.receivePush(data, callback)</code> sau khi đã tạo client. Xem <a href="../consumer-java/src/main/java/vn/caresoft/voice/consumer/JavaConsumer.java">mẫu Java đầy đủ</a> cho điều khiển, route, stats, push và logout.</p>
+<p><code>VoiceError</code> có <code>code</code>, <code>operation</code>, <code>retryable</code>, <code>callId</code>. Hiển thị lỗi và chỉ retry khi phù hợp với trạng thái hiện tại. Log mã lỗi, phiên bản và timestamp; không log token hoặc phản hồi mạng.</p>
+<p>Khi đổi domain/nhân viên, kết thúc cuộc gọi hiện tại rồi gọi <code>logout()</code>, <code>CaresoftVoicePush.clear(oldClient)</code> và <code>dispose()</code> client cũ; hủy subscription/job đăng ký push của tài khoản cũ trước khi tạo client mới. Không dispose khi chỉ đóng Activity.</p>
+<p><code>logout()</code> trả <code>LogoutResult</code> với xác nhận riêng app session/voice session và việc xóa credential cục bộ. Không coi local clear là server đã thu hồi phiên. Xem <a href="#api">API</a> và <a href="#troubleshooting">xử lý lỗi</a>.</p>
+<h2 id="guide-11-nghiệm-thu-trước-phát-hành">11. Nghiệm thu trước phát hành</h2>
+<p>Chạy <a href="#testing">checklist</a> trên thiết bị/OS của sản phẩm, gồm gọi ra, nhận từ nền/khóa/cold-start, hai chiều, route, token rotation, logout, mạng yếu và giới hạn OEM. Kết quả trên một máy hoặc APK build thành công không thay thế nghiệm thu các ca đó.</p></section><section id="api"><h1 id="api-api-kotlin-java-101">API Kotlin / Java — 1.0.1</h1>
+<p>Public package: <code>vn.caresoft.voice</code>; UI tùy chọn: <code>vn.caresoft.voice.ui.VoiceCallView</code>. API mạng/điều khiển dùng Kotlin suspend và overload callback Java. Ví dụ đã compile nằm trong <a href="../consumer-java/src/main/java/vn/caresoft/voice/consumer/JavaConsumer.java">consumer Java</a> và <a href="../integration/examples/kotlin/SdkIntegrationExample.kt">recipe Kotlin</a>.</p>
+<h2 id="api-client">Client</h2>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Kết quả/ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CaresoftVoiceClient(context, options)</td>
+<td>Client giữ phiên và cuộc gọi; dùng applicationContext</td>
+</tr>
+<tr>
+<td>connect()</td>
+<td>Đăng nhập bằng C2C TokenProvider</td>
+</tr>
+<tr>
+<td>checkSession(): SessionInfo</td>
+<td>Xác minh phiên đã lưu; AUTHENTICATED/UNAUTHENTICATED/UNKNOWN</td>
+</tr>
+<tr>
+<td>getSnapshot(): ClientSnapshot</td>
+<td>Session, connection, availability, device, readiness, activeCall</td>
+</tr>
+<tr>
+<td>snapshots / observe(handler)</td>
+<td>StateFlow hoặc ClientEvent + EventMeta; observe trả VoiceSubscription</td>
+</tr>
+<tr>
+<td>getAvailability() / setAvailability(value)</td>
+<td>Đọc/đổi ca trực, server xác nhận</td>
+</tr>
+<tr>
+<td>getCallDevice() / selectCallDevice(value)</td>
+<td>Mobile/Browser/Other/Unknown; không đổi trong call</td>
+</tr>
+<tr>
+<td>getCallingLines(): List<CallingLine></td>
+<td>id/label/isDefault; dùng id làm callerId</td>
+</tr>
+<tr>
+<td>checkReadiness(): Readiness</td>
+<td>auth, microphone, callUI, push, device: READY/BLOCKED/UNKNOWN</td>
+</tr>
+<tr>
+<td>registerPushToken(PushRegistration) / unregisterPushToken(PushRegistration)</td>
+<td>FCM registration cùng scope app/installation</td>
+</tr>
+<tr>
+<td>receivePush(data): VoiceCall?</td>
+<td>Forward FCM data khi đã khởi tạo client</td>
+</tr>
+<tr>
+<td>createCall(CallOptions): VoiceCall</td>
+<td>Đồng bộ trên main, reserve một cuộc gọi</td>
+</tr>
+<tr>
+<td>getActiveCall(): VoiceCall?</td>
+<td>Gắn lại UI vào cuộc gọi hiện tại</td>
+</tr>
+<tr>
+<td>logout(): LogoutResult</td>
+<td>Xác nhận app/voice session và local clear riêng</td>
+</tr>
+<tr>
+<td>dispose()</td>
+<td>Giải phóng client; không thay thế logout phía server</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api-cấu-hình-thường-dùng">Cấu hình thường dùng</h3>
+<table>
+<thead>
+<tr>
+<th><code>VoiceOptions</code></th>
+<th>Cách cung cấp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain, appId, apiBaseUrl</td>
+<td>Cấu hình được Caresoft cấp cho ứng dụng</td>
+</tr>
+<tr>
+<td>installationId</td>
+<td>ID ổn định của một lần cài đặt</td>
+</tr>
+<tr>
+<td>tokenProvider</td>
+<td>Provider lấy C2C token từ backend đã xác thực</td>
+</tr>
+<tr>
+<td>appVersionCode</td>
+<td>Version code của app, dạng <code>String</code></td>
+</tr>
+<tr>
+<td>pushConfig</td>
+<td><code>AppPushConfig(applicationId, "default")</code> cho FCM</td>
+</tr>
+<tr>
+<td>operationTimeoutMs</td>
+<td>Timeout thao tác, mặc định 15000 ms</td>
+</tr>
+<tr>
+<td>appName</td>
+<td>Tên hiển thị, mặc định "Caresoft Voice"</td>
+</tr>
+</tbody>
+</table>
+<p>Năm tham số đầu bắt buộc. Các tùy chọn còn lại dùng mặc định trừ khi được hướng dẫn riêng. Không dùng provider chứa token cố định trong app phát hành.</p>
+<p><code>TokenProvider.getToken(): String</code> là suspend; Java dùng <code>CallbackTokenProvider</code> + <code>TokenProviders.fromCallback</code>. Provider trả C2C token. <code>AppPushConfig(applicationId, environment="default")</code> và <code>PushRegistration(token, installationId, applicationId, environment="default")</code> phải cùng scope.</p>
+<h2 id="api-voicecall">VoiceCall</h2>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Kết quả/ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start()</td>
+<td>Gọi đi sau createCall</td>
+</tr>
+<tr>
+<td>answer() / reject()</td>
+<td>Nhận/từ chối incoming</td>
+</tr>
+<tr>
+<td>hangup(): EndResult</td>
+<td>Kết thúc local + serverAcknowledged</td>
+</tr>
+<tr>
+<td>setMuted(Boolean) / setHeld(Boolean)</td>
+<td>Chỉ dùng khi ACTIVE, state theo ACK server</td>
+</tr>
+<tr>
+<td>sendDTMF(String)</td>
+<td>0–9/A–D/*/#</td>
+</tr>
+<tr>
+<td>getAudioRoutes(): List<AudioRoute></td>
+<td>id/name/selected do hệ thống cung cấp</td>
+</tr>
+<tr>
+<td>setAudioRoute(id)</td>
+<td>Yêu cầu route; chờ AudioRoutesChanged cho lựa chọn thực</td>
+</tr>
+<tr>
+<td>getStats(): CallStats</td>
+<td>timestamp, packetsLost, jitterSeconds, roundTripTimeSeconds, bytesSent/Received</td>
+</tr>
+<tr>
+<td>getSnapshot(): CallSnapshot</td>
+<td>State và mediaState độc lập; giữ snapshot terminal</td>
+</tr>
+<tr>
+<td>snapshots / observe(handler)</td>
+<td>StateFlow hoặc CallEvent; hủy subscription khi view hủy</td>
+</tr>
+</tbody>
+</table>
+<p><code>CallOptions(to, callerId=null, ticketId=null)</code>. <code>CallSnapshot</code> có id, direction, remote, state, mediaState, muted, held, serverCallId, endReason, createdAt, connectedAt, endedAt. Các mốc thời gian trong <code>CallSnapshot</code> là Unix milliseconds; không dùng ordinal enum làm protocol value.</p>
+<p>CallState: NEW, DIALING, RINGING, CONNECTING, ACTIVE, ENDED. MediaState: NOT_STARTED, CONNECTING, CONNECTED, DISCONNECTED, FAILED. ENDED terminal; không tái sử dụng call đã kết thúc.</p>
+<p>EndReason: LOCAL_ENDED, REMOTE_ENDED, REJECTED, MISSED, ANSWERED_ELSEWHERE, CANCELED_ELSEWHERE, AUTH_FAILED, CONNECTION_FAILED, BUSY, DISPOSED. Dùng để hiển thị kết quả; không suy diễn nguyên nhân chi tiết chỉ từ BUSY hoặc CONNECTION_FAILED.</p>
+<h2 id="api-events-và-ui">Events và UI</h2>
+<p>ClientEvent: SessionChanged, ConnectionChanged, AvailabilityChanged, CallDeviceChanged, IncomingCall, CallRestored, Error.</p>
+<p>CallEvent: Changed(snapshot), AudioRoutesChanged(routes), Error(error). <code>EventMeta</code> gồm clientId/callId/sequence/timestamp; bỏ event của client cũ sau khi đổi tài khoản.</p>
+<p><code>VoiceCallView(context)</code> hoặc khai báo bằng XML; dùng trên main thread:</p>
+<table>
+<thead>
+<tr>
+<th>API UI</th>
+<th>Hành vi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bind(call)</code></td>
+<td>Gắn và hiển thị snapshot hiện tại, cập nhật theo call; không tự gọi/nhận</td>
+</tr>
+<tr>
+<td><code>unbind()</code></td>
+<td>Hủy quan sát UI; không kết thúc/dispose call</td>
+</tr>
+<tr>
+<td><code>lineLabel: String?</code></td>
+<td>Nhãn đầu số tùy chọn; không thay <code>callerId</code>; Java dùng <code>setLineLabel()</code></td>
+</tr>
+</tbody>
+</table>
+<p>UI hiển thị incoming nhận/từ chối, outgoing, trạng thái kết nối, thời lượng, điều khiển ACTIVE, bàn phím DTMF và kết quả ENDED. Host xin quyền runtime trước thao tác nghe/gọi, cung cấp điều hướng Đóng/Quay lại, giữ client/call qua Activity recreation và unbind khi hủy view. Nếu cần giữ màn hình ENDED sau đó, host giữ call/snapshot vì <code>getActiveCall()</code> chỉ trả call đang hoạt động. Xem <a href="#guide-8-ui-cuộc-gọi">tích hợp UI</a>. Không giữ Activity trong client/service.</p>
+<p>Java callback có <code>onSuccess(T)</code> và <code>onError(VoiceError)</code>. Các API điều khiển không có kết quả dữ liệu trả <code>kotlin.Unit</code>; reject/hangup trả <code>EndResult</code>, logout trả <code>LogoutResult</code>. Mẫu compile là nguồn tham khảo chữ ký khi tích hợp Java.</p>
+<p><code>VoiceError(code, operation, retryable, callId)</code> có message an toàn theo mã lỗi. Không diễn giải <code>serverAcknowledged=false</code> là cuộc gọi vẫn còn local; kiểm tra hai trường EndResult riêng.</p>
+<h2 id="api-push-bridge-và-lỗi">Push bridge và lỗi</h2>
+<p><code>CaresoftVoicePush.configure(client)</code> đặt client nhận data message; gọi tại Application sau khởi tạo. Kotlin dùng <code>CaresoftVoicePush.receive(data)</code>; Java dùng <code>client.receivePush(data, callback)</code>. <code>CaresoftVoicePush.clear(client)</code> gỡ đúng client cũ khi đăng xuất/đổi tài khoản. Host cung cấp <code>FirebaseMessagingService</code>, cấu hình Firebase và cơ chế retry đăng ký token.</p>
+<p>Mọi API bất đồng bộ có thể lỗi. Trong coroutine bắt <code>VoiceError</code>; không nuốt cancellation của coroutine host. Java xử lý <code>onError</code>. Xem <a href="#troubleshooting">xử lý lỗi</a> để biết các bước kiểm tra và thông tin được phép gửi hỗ trợ.</p></section><section id="backend"><h1 id="backend-cấu-hình-backend-token-và-firebase">Cấu hình backend, token và Firebase</h1>
+<h2 id="backend-thông-tin-cần-chuẩn-bị">Thông tin cần chuẩn bị</h2>
+<table>
+<thead>
+<tr>
+<th>Thông tin</th>
+<th>Nơi cung cấp</th>
+<th>Cách dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domain</td>
+<td>Caresoft</td>
+<td><code>VoiceOptions.domain</code> của tổ chức/nhân viên</td>
+</tr>
+<tr>
+<td>API URL HTTPS</td>
+<td>Caresoft</td>
+<td><code>VoiceOptions.apiBaseUrl</code></td>
+</tr>
+<tr>
+<td>Voice App ID</td>
+<td>Caresoft Admin</td>
+<td><code>VoiceOptions.appId</code></td>
+</tr>
+<tr>
+<td>Nhân viên</td>
+<td>Hệ thống khách hàng/Caresoft</td>
+<td>Backend xác thực đúng người và quyền gọi</td>
+</tr>
+<tr>
+<td>C2C token</td>
+<td>Backend khách hàng</td>
+<td><code>TokenProvider.getToken()</code></td>
+</tr>
+<tr>
+<td>Android applicationId</td>
+<td>Ứng dụng khách hàng</td>
+<td>Package đã đăng ký cho push</td>
+</tr>
+<tr>
+<td>Firebase project</td>
+<td>Khách hàng</td>
+<td>Android client và cấu hình gửi FCM phía server</td>
+</tr>
+<tr>
+<td>installationId</td>
+<td>Ứng dụng khách hàng</td>
+<td>ID ổn định cho một lần cài đặt</td>
+</tr>
+</tbody>
+</table>
+<p>Liên hệ quản trị Caresoft để đăng ký ứng dụng thoại cho domain, package Android và cấu hình push. Không sử dụng cấu hình của ứng dụng khác. Các ví dụ trong tài liệu dùng biến cấu hình, không cung cấp môi trường đăng nhập sẵn.</p>
+<h2 id="backend-c2c-token-từ-backend">C2C token từ backend</h2>
+<ol>
+<li>App đăng nhập backend của bạn bằng cơ chế xác thực hiện có.</li>
+<li>Backend kiểm tra nhân viên và quyền sử dụng thoại, cấp C2C token theo hợp đồng Voice API do Caresoft cung cấp.</li>
+<li>App nhận token qua HTTPS; <code>TokenProvider</code> trả token đó cho SDK.</li>
+<li>Khi cần token mới, provider tiếp tục gọi backend đã xác thực. Báo lỗi khi phiên app hết hạn thay vì trả token cũ hoặc chuỗi rỗng.</li>
+</ol>
+<p>Endpoint, định dạng yêu cầu và header xác thực thuộc backend của bạn; SDK không quy định một endpoint cấp token chung. Không đặt Voice API signing secret trong source, BuildConfig, resource hoặc cấu hình mà client đọc được. Provider trả <strong>C2C token</strong>, không trả khóa ký, FCM token hoặc token phiên SDK.</p>
+<p>Demo có chế độ thử endpoint HTTPS trả:</p>
+<pre><code class="language-json">{ &quot;token&quot;: &quot;C2C_TOKEN_FROM_YOUR_BACKEND&quot; }
+</code></pre>
+<p>Endpoint demo không tự gắn header xác thực của backend khách hàng. Production triển khai <code>TokenProvider</code> bằng HTTP client đã xác thực của app. Demo từ chối redirect, URL chứa user/password và phản hồi quá 64 KiB. Chế độ Agent ID + Voice API token chỉ dùng thử có kiểm soát.</p>
+<h2 id="backend-firebase-và-cuộc-gọi-đến">Firebase và cuộc gọi đến</h2>
+<ol>
+<li>Tạo/chọn Firebase project của bạn; đăng ký Android applicationId chính xác.</li>
+<li>Với demo, đặt <code>google-services.json</code> Android client <strong>cục bộ</strong> tại <code>demo/google-services.json</code> rồi build lại. Với app riêng, cấu hình Firebase theo cách của app và khởi tạo Firebase trước khi lấy FCM token.</li>
+<li>Đăng ký thông tin project, package và cấu hình gửi FCM với backend/Caresoft. Firebase service-account/private key chỉ đưa vào hệ thống server, không vào app hoặc repo demo.</li>
+<li>Tạo client với <code>AppPushConfig(applicationId, "default")</code>. Sau khi xác minh phiên, lấy FCM token và gọi <code>registerPushToken(PushRegistration(...))</code> với cùng installationId/package/environment.</li>
+<li>Xử lý <code>FirebaseMessagingService.onNewToken()</code> kể cả khi chưa có Activity. Lưu yêu cầu retry nếu chưa đăng nhập hoặc mất mạng; vô hiệu yêu cầu cũ khi đổi tài khoản. Xem <code>PendingPushRegistration</code> và <code>DemoTokenJobService</code> trong demo.</li>
+<li>Trong Application, tạo client và gọi <code>CaresoftVoicePush.configure(client)</code> trước khi forward data message tới <code>CaresoftVoicePush.receive()</code>.</li>
+</ol>
+<p>Backend cần gửi high-priority <strong>data message</strong> theo hợp đồng cuộc gọi Caresoft. Không tự chế payload; không log payload nhận được. FCM có cửa sổ xử lý ngắn và chịu giới hạn nền Android. SDK không tự đăng ký một <code>FirebaseMessagingService</code> thay host.</p>
+<p>Firebase khởi tạo thành công chưa chứng minh backend gửi đúng cuộc gọi. Kiểm tra đăng ký token phía backend và nhận cuộc gọi trên thiết bị thật. Chưa cấu hình Firebase vẫn có thể thử gọi đi sau khi đăng nhập, nhưng chưa thể nghiệm thu cuộc gọi đến qua push.</p>
+<h2 id="backend-mạng-và-thông-báo">Mạng và thông báo</h2>
+<p>Cho phép kết nối tới các địa chỉ/cổng được Caresoft cấp cho môi trường của bạn. Không tắt kiểm tra HTTPS/TLS. Nếu tổ chức có VPN, proxy hoặc firewall, phối hợp quản trị mạng và thử cả Wi-Fi/mobile data.</p>
+<p>Thông báo cuộc gọi đến dùng chuông/rung theo cài đặt Android. Host xin quyền thông báo và hướng dẫn người dùng bật kênh <strong>Cuộc gọi đến</strong>; không phát thêm chuông chồng lên thông báo. Full-screen khi khóa máy phụ thuộc quyền hệ thống, còn thao tác nhận cần quyền micro đã cấp ở foreground. Xem <a href="#compatibility">yêu cầu Android</a>.</p></section><section id="compatibility"><h1 id="compatibility-yêu-cầu-và-khả-năng-tương-thích">Yêu cầu và khả năng tương thích</h1>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Bản bàn giao 1.0.1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android tối thiểu</td>
+<td>Android 8.0 / API 26</td>
+</tr>
+<tr>
+<td>Demo compile/target SDK</td>
+<td>35</td>
+</tr>
+<tr>
+<td>JDK / Gradle / Android Gradle Plugin</td>
+<td>17 / 8.10.2 / 8.7.2</td>
+</tr>
+<tr>
+<td>Kotlin của demo</td>
+<td>2.0.21</td>
+</tr>
+<tr>
+<td>UI tùy chọn</td>
+<td>Android Views; không bắt buộc Compose/AppCompat</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>API callback; có module <code>consumer-java</code></td>
+</tr>
+</tbody>
+</table>
+<p>Một process dùng một client và một cuộc gọi tại một thời điểm. Bản 1.0.1 không cung cấp video, hội nghị, chuyển cuộc gọi hoặc API điều khiển ghi âm. Không tự di chuyển phiên đăng nhập từ SDK nền tảng khác.</p>
+<p>Host phải có micro, kết nối mạng và khả năng cuộc gọi của Android. Kiểm tra merged manifest và quyền trước khi gọi/nhận; không yêu cầu ứng dụng trở thành dialer mặc định.</p>
+<ul>
+<li>Android 12+: giới hạn mở UI và chạy foreground service từ nền; xin <code>BLUETOOTH_CONNECT</code> nếu dùng Bluetooth.</li>
+<li>Android 13+: xin <code>POST_NOTIFICATIONS</code> để bảo đảm người dùng thấy thông báo cuộc gọi.</li>
+<li>Android 14+: kiểm tra quyền full-screen intent và giới hạn micro khi app ở nền; cung cấp đường mở app từ thông báo.</li>
+<li>Mọi phiên bản: cài đặt chuông, DND, Doze và chính sách pin của hãng có thể ảnh hưởng thông báo. Force-stop có thể chặn push đến khi người dùng mở app lại.</li>
+</ul>
+<p>Khi phát hành, kiểm tra APK/AAB cuối với ABI và yêu cầu page-size của các thiết bị mục tiêu. Build thành công không thay thế kiểm thử nghe/gọi trên thiết bị thật. Dùng <a href="#testing">checklist nghiệm thu</a> cho ma trận Android, thiết bị và mạng của sản phẩm.</p></section><section id="security"><h1 id="security-bảo-vệ-cấu-hình-và-credential">Bảo vệ cấu hình và credential</h1>
+<ul>
+<li>Lấy C2C token từ backend đã xác thực và kiểm tra quyền đúng nhân viên. Không đóng gói khóa ký Voice API, Firebase service-account/private key hoặc token đăng nhập vào APK.</li>
+<li>Không log số điện thoại, C2C/FCM token, raw push payload hoặc phản hồi mạng chứa credential. Dùng <code>VoiceError.code</code>/<code>operation</code>, phiên bản và timestamp khi hỗ trợ.</li>
+<li>SDK mặc định bảo vệ phiên đã lưu bằng Android Keystore. Host bảo vệ phiên backend riêng và tránh đưa token vào Activity saved state, backup, clipboard hoặc crash breadcrumb.</li>
+<li>Demo chỉ giữ token nhập tay trong RAM, xóa khỏi provider sau đăng nhập, chặn screenshot màn hình token và tắt backup dữ liệu app. Khi phiên hết hạn cần nhập token mới.</li>
+<li>Không coi SharedPreferences là nơi lưu bí mật. Chỉ lưu cấu hình cần để khôi phục app, bảo vệ dữ liệu nhạy cảm bằng cơ chế phù hợp.</li>
+<li>Đổi domain/nhân viên: kết thúc cuộc gọi, logout, clear push bridge và dispose client cũ. Kiểm tra <code>LogoutResult</code>: xóa credential cục bộ không thay thế xác nhận thu hồi phiên phía server.</li>
+<li>Không tắt TLS validation, đưa credential vào query string hoặc chuyển tiếp token qua redirect sang host khác.</li>
+<li>APK demo dùng debug signing để thử. App phát hành cần applicationId, Firebase và signing riêng của khách hàng.</li>
+</ul></section><section id="testing"><h1 id="testing-checklist-tích-hợp-101">Checklist tích hợp 1.0.1</h1>
+<h2 id="testing-build-và-cấu-hình">Build và cấu hình</h2>
+<ul>
+<li>Chạy <code>python3 scripts/setup-sdk.py</code> và <code>python3 scripts/check-delivery.py</code>; build demo/consumer Java bằng JDK 17.</li>
+<li>Dùng cả hai dependency phiên bản <code>1.0.1</code>; giữ Maven metadata khi chép sang app riêng.</li>
+<li>Cấu hình Firebase đúng applicationId và cấu hình gửi push phía backend; không đưa khóa ký hoặc service-account vào app.</li>
+<li>Kiểm tra merged manifest, signing, ABI/page-size và yêu cầu phát hành của APK/AAB cuối.</li>
+</ul>
+<h2 id="testing-phiên-và-nhân-viên">Phiên và nhân viên</h2>
+<ul>
+<li>Đăng nhập đúng cấu hình; token sai/hết hạn, HTTPS lỗi và offline báo lỗi rõ ràng.</li>
+<li>Mở lại app và kiểm tra phiên đã lưu; <code>UNKNOWN</code> không tự bị coi là đã đăng xuất.</li>
+<li>Provider lấy được token mới từ backend đã xác thực, không cần đóng gói khóa ký.</li>
+<li>Logout/đổi tài khoản không khôi phục phiên hoặc đăng ký push của nhân viên cũ.</li>
+<li>Chọn thiết bị điện thoại, trạng thái sẵn sàng và đầu số được phép gọi.</li>
+</ul>
+<h2 id="testing-cuộc-gọi-và-ui">Cuộc gọi và UI</h2>
+<ul>
+<li>Gọi đi: đổ chuông, nhận, <code>ACTIVE</code>, tiếng <strong>hai chiều</strong>, local/remote hangup.</li>
+<li>Gọi đến: nhận/từ chối, đối ứng hủy, lặp push không tạo hai cuộc gọi, không kẹt ở kết nối.</li>
+<li>Mute/unmute, hold/unhold, DTMF, loa trong/loa ngoài/tai nghe/Bluetooth; xác nhận tiếng thực tế.</li>
+<li><code>VoiceCallView</code>: incoming, active, bàn phím DTMF, nhãn đầu số, thời lượng và thông tin kết thúc.</li>
+<li>Xoay màn hình, ẩn/quay lại UI và đổi UI không tạo/start lại call; <code>unbind()</code> không kết thúc cuộc gọi.</li>
+<li>Giữ kết quả <code>ENDED</code> đến khi người dùng đóng; cuộc gọi tiếp theo tạo object mới.</li>
+<li>Wi-Fi/mobile data, VPN/firewall của sản phẩm, mạng yếu/đổi mạng và cuộc gọi dài.</li>
+</ul>
+<h2 id="testing-push-chuông-và-nền-android">Push, chuông và nền Android</h2>
+<ul>
+<li>Token mới khi chưa login, token rotation trong nền, process restart, retry lỗi và đổi tài khoản lúc job đang chạy.</li>
+<li>Incoming ở foreground/background/khóa/cold-start, cả khi không có Activity.</li>
+<li>Chuông/rung theo kênh <strong>Cuộc gọi đến</strong>, âm lượng chuông và DND; nhận/từ chối/kết thúc dừng thông báo phù hợp.</li>
+<li>Từ chối quyền micro/thông báo/Bluetooth/full-screen và mở lại phần cài đặt để cấp quyền.</li>
+<li>Android 12–15, Doze, chính sách pin OEM, reboot và force-stop.</li>
+<li>Đối chiếu đăng ký token phía backend; chỉ khởi tạo Firebase chưa chứng minh nhận được cuộc gọi.</li>
+</ul>
+<p>Ghi nhận thiết bị, Android, phiên bản app/SDK, mạng và kết quả từng ca. APK build thành công hoặc kết quả trên một máy không chứng nhận toàn bộ các ca trên.</p></section><section id="troubleshooting"><h1 id="troubleshooting-xử-lý-lỗi-tích-hợp">Xử lý lỗi tích hợp</h1>
+<table>
+<thead>
+<tr>
+<th>Hiện tượng / mã</th>
+<th>Kiểm tra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Không tìm thấy <code>vn.caresoft</code> artifact</td>
+<td>Chạy setup, trỏ đúng <code>packages/maven</code>, giữ metadata và version <code>1.0.1</code></td>
+</tr>
+<tr>
+<td><code>CLIENT_ALREADY_EXISTS</code></td>
+<td>Dùng một client ở Application/service; dispose client cũ trước khi tạo lại</td>
+</tr>
+<tr>
+<td><code>MAIN_THREAD_REQUIRED</code></td>
+<td>Tạo client và <code>createCall()</code> trên main thread</td>
+</tr>
+<tr>
+<td><code>LOGIN_REQUIRED</code> / <code>AUTH_REQUIRED</code></td>
+<td>Provider trả C2C mới cho đúng nhân viên; kiểm tra phiên backend</td>
+</tr>
+<tr>
+<td><code>REQUEST_REJECTED</code></td>
+<td>Kiểm tra App ID, nhân viên và quyền gọi với quản trị Caresoft</td>
+</tr>
+<tr>
+<td><code>NETWORK_UNAVAILABLE</code> / phiên <code>UNKNOWN</code></td>
+<td>Kiểm tra mạng, HTTPS và cấu hình; giữ phiên và thử <code>checkSession()</code> khi có mạng</td>
+</tr>
+<tr>
+<td><code>TELECOM_UNAVAILABLE</code></td>
+<td>Kiểm tra merged manifest, <code>MANAGE_OWN_CALLS</code> và khả năng cuộc gọi của thiết bị</td>
+</tr>
+<tr>
+<td><code>MICROPHONE_PERMISSION_REQUIRED</code></td>
+<td>Xin <code>RECORD_AUDIO</code> ở foreground trước answer/start</td>
+</tr>
+<tr>
+<td><code>FOREGROUND_SERVICE_NOT_ALLOWED</code></td>
+<td>Mở app từ thông báo, kiểm tra quyền micro và giới hạn nền của Android</td>
+</tr>
+<tr>
+<td><code>PUSH_NOT_REGISTERED</code> / <code>INVALID_PUSH_CONFIG</code></td>
+<td>Firebase đúng package; <code>AppPushConfig</code>/<code>PushRegistration</code> cùng scope; cấu hình backend đúng</td>
+</tr>
+<tr>
+<td>Nhận push nhưng không thấy UI</td>
+<td>Tạo/configure client trước receive; kiểm tra phiên, quyền thông báo/full-screen và hạn chế nền</td>
+</tr>
+<tr>
+<td>Có thông báo nhưng không có chuông</td>
+<td>Kiểm tra kênh <strong>Cuộc gọi đến</strong>, âm lượng chuông, DND và cài đặt thông báo của app</td>
+</tr>
+<tr>
+<td>Không nhận sau force-stop</td>
+<td>Người dùng cần mở app lại</td>
+</tr>
+<tr>
+<td><code>ACTIVE</code> nhưng không nghe</td>
+<td>Thử tiếng hai chiều; quyền micro, thiết bị âm thanh thực tế, âm lượng cuộc gọi, mạng và <code>mediaState</code></td>
+</tr>
+<tr>
+<td>Đổi thiết bị âm thanh chưa cập nhật</td>
+<td>Chờ <code>AudioRoutesChanged</code>; lấy id từ <code>getAudioRoutes()</code></td>
+</tr>
+<tr>
+<td><code>CALL_IN_PROGRESS</code> khi trở lại màn hình</td>
+<td>Dùng <code>getActiveCall()</code> và bind lại; không tạo cuộc gọi thứ hai</td>
+</tr>
+<tr>
+<td>Provider demo trống sau connect</td>
+<td>Token nhập tay đã được xóa; nhập lại hoặc dùng provider lấy token từ backend</td>
+</tr>
+</tbody>
+</table>
+<p>Khi gửi hỗ trợ, cung cấp phiên bản SDK/app, model/Android, foreground/background, thời điểm, <code>CallState</code>/<code>MediaState</code> và <code>VoiceError.code</code>/<code>operation</code>. Chỉ gửi ID đối chiếu cuộc gọi qua kênh được phép. Không gửi token, khóa riêng, raw payload hoặc dữ liệu khách hàng trong log công khai.</p></section><section id="delivery"><h1 id="delivery-nội-dung-gói-cài-đặt-101">Nội dung gói cài đặt 1.0.1</h1>
+<table>
+<thead>
+<tr>
+<th>Đường dẫn</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>packages/CaresoftVoice-Android-1.0.1-binary.zip</code></td>
+<td>Maven repository chứa SDK core/UI và metadata</td>
+</tr>
+<tr>
+<td><code>packages/caresoft-voice-demo-1.0.1-debug.apk</code></td>
+<td>APK demo thử tích hợp, debug signing</td>
+</tr>
+<tr>
+<td><code>packages/CaresoftVoice-Android-1.0.1-integration.zip</code></td>
+<td>ZIP bộ tích hợp: demo, binary, tài liệu, examples và wrapper</td>
+</tr>
+<tr>
+<td><code>packages/release.json</code>, <code>packages/SHA256SUMS</code></td>
+<td>Phiên bản, kích thước và SHA-256</td>
+</tr>
+<tr>
+<td><code>scripts/setup-sdk.py</code></td>
+<td>Kiểm tra checksum, giải nén binary vào <code>packages/maven</code></td>
+</tr>
+<tr>
+<td><code>demo/</code></td>
+<td>Demo Kotlin dùng binary SDK</td>
+</tr>
+<tr>
+<td><code>consumer-java/</code>, <code>integration/examples/</code></td>
+<td>Ví dụ Java/Kotlin</td>
+</tr>
+<tr>
+<td><code>docs/caresoft-voice-android.html</code></td>
+<td>Bộ tài liệu tích hợp đọc offline</td>
+</tr>
+</tbody>
+</table>
+<p>Giữ toàn bộ Maven repository cùng POM/Gradle metadata. Lần resolve đầu cần truy cập Google Maven/Maven Central để tải dependency; gói cài đặt không phải mirror offline toàn bộ các repository này.</p>
+<p>Gói không chứa source SDK/UI, source JAR, cấu hình môi trường thực, <code>google-services.json</code>, khóa riêng hoặc keystore phát hành. APK demo chỉ để thử; phát hành ứng dụng của bạn bằng signing riêng.</p>
+<p>Khi nâng phiên bản: tải bản tương ứng, kiểm tra checksum, chạy lại setup, cập nhật dependency rồi build và nghiệm thu app. Không đặt code tùy chỉnh trong <code>packages/maven</code> vì đây là thư mục sinh lại. Không thêm AAR bằng <code>flatDir</code> làm mất thông tin dependency.</p>
+<p><code>release.json</code> ghi checksum binary/APK. <code>SHA256SUMS</code> ngoài cùng còn ghi checksum integration ZIP. Integration ZIP không chứa chính nó hoặc <code>SHA256SUMS</code> ngoài cùng; sau giải nén, setup kiểm tra binary bằng <code>release.json</code> như khi clone repo.</p></section><footer>Caresoft Voice Android · 1.0.1</footer></main></body></html>
